@@ -3,23 +3,7 @@ $(document).ready(function(){
 	console.log("jQuery is working");
 
     $("#checkout").click(function(){
-    	// grab deviceName and userName
-
-    	let deviceName = "superman";
-    	let userName = "Chris";
-
-        let url = "/server.php?action=checkout";
-        	url +="&deviceName=" + deviceName;
-        	url +="&userName=" +userName;
-
-        console.log("URL : " + url);
-
-        $.ajax({
-			url: url,
-		  	success: function( result ) {
-		    	console.log(result);
-		  	}
-		});
+        alert("trying to check something out");
     });
 
     $("#checkin").click(function(){
@@ -31,7 +15,20 @@ $(document).ready(function(){
     });
 
     $("#addRemove").click(function(){
-        alert("AddRemoving devices");
+
+        let data = {
+            action : "addDevice",
+        	deviceName : $("#deviceName").val(),
+        	deviceModel : $("#deviceModel").val()
+        }
+
+        alert(`Trying to add device : ${data.deviceName} : ${data.deviceModel}`);
+        			// &deviceName= ${deviceName}
+        			// &deviceModel= ${deviceModel}`;
+
+        $.post("server.php?", data, function (data){
+			console.log("request happened : "+ data)
+		});
     });
 
     const displayOutDevices = function (dbList) {
