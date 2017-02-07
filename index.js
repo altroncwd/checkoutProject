@@ -19,15 +19,14 @@ $(document).ready(function(){
         let data = {
             action : "addDevice",
         	deviceName : $("#deviceName").val(),
-        	deviceModel : $("#deviceModel").val()
-        }
+        	deviceModel : $("#deviceModel").val(),
+            deviceOS : $("#deviceOS").val()
+        };
 
         alert(`Trying to add device : ${data.deviceName} : ${data.deviceModel}`);
-        			// &deviceName= ${deviceName}
-        			// &deviceModel= ${deviceModel}`;
-
+        			
         $.post("server.php?", data, function (data){
-			console.log("request happened : "+ data)
+			console.log("request happened : " + data)
 		});
     });
 

@@ -10,7 +10,22 @@
 
 		if ($_REQUEST["action"] == "addDevice"){
 
-			echo "so you want to add a device";
+			// create query
+			$queryRequest = "INSERT INTO `deviceList` (`id`, `deviceName`, `phoneModel`, `osVersion`, `status`) ";
+			$queryRequest.= "VALUES (NULL, '" . $_REQUEST["deviceName"]; 			
+			$queryRequest.=	"', '" . $_REQUEST["deviceModel"];
+			$queryRequest.=	"', '" . $_REQUEST["deviceOS"] . "', 'available')";
+
+
+
+			$results = mysqli_query($dbConnection, $queryRequest);
+			if(!$results){
+				die('Invalid query: ' . mysql_error());
+			} else {
+				echo json_encode("It worked");
+			}
+
+			// echo json_encode($list);
 
 		}
 
