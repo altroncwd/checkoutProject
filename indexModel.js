@@ -14,11 +14,7 @@ Maybe wrapping all my models in a function which returns an object with methods 
 const Model (){
 	let methodsAccess = {};
 
-	// our functions for basic CRUD actions
-
-	// data manipulation for lists
-
-	// we can append these to our object
+	// store our data here for local use
 
 
 
