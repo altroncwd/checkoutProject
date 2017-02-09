@@ -29,19 +29,19 @@ in addition you will need to create two of the following tables:
 
 ```
   checkoutLog
-  - id          (primary + auto increment)
-  - deviceName  (string + unique)
-  - deviceModel (string)
-  - osVersion   (string)
-  - status      (string)
-```
-
-```
-  deviceList
   - id        (int)
   - user      (string)
   - inOrOut   (string)
   - date      (date)
+```
+
+```
+  deviceList
+  - id          (primary + auto increment)
+  - deviceName  (string + unique)
+  - phoneModel (string)
+  - osVersion   (string)
+  - status      (string)
 
 ```
 Once you have your database and tables set up you'll want to clone the repo dirrectly into the XAMPP htdocs folder.  After which you'll be able to view the "main page" of the app at

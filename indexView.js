@@ -29,8 +29,9 @@ $(document).ready(function(){
 			if (data === "Invalid query"){
                 console.log("request failed : Duplicate device name");
                 alert("Duplicate Devices Name");
+                console.log(data);
             } else {
-                console.log("request happened : " + data)
+                console.log("request happened : " + data);
             }
 		});
     });

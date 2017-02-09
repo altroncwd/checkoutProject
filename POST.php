@@ -23,6 +23,7 @@
 				die("Invalid query" . mysql_error());
 			} else {
 				echo json_encode("It worked : " . $results);
+				// when a query suceeds it will be listed as 1
 			}
 
 			// echo json_encode($list);
