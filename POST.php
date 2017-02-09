@@ -20,9 +20,9 @@
 
 			$results = mysqli_query($dbConnection, $queryRequest);
 			if(!$results){
-				die('Invalid query: ' . mysql_error());
+				die("Invalid query" . mysql_error());
 			} else {
-				echo json_encode("It worked");
+				echo json_encode("It worked : " . $results);
 			}
 
 			// echo json_encode($list);

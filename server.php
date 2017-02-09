@@ -4,9 +4,10 @@
 
 	if (!$dbConnection){
 		die('Could not connect: ' . mysql_error());
-	} else {
-		echo 'connection established </br>';
 	}
+	// else {
+	// 	echo 'connection established';
+	// }
 
 	include "POST.php";
 	

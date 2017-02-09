@@ -26,7 +26,12 @@ $(document).ready(function(){
         alert(`Trying to add device : ${data.deviceName} : ${data.deviceModel}`);
         			
         $.post("server.php?", data, function (data){
-			console.log("request happened : " + data)
+			if (data === "Invalid query"){
+                console.log("request failed : Duplicate device name");
+                alert("Duplicate Devices Name");
+            } else {
+                console.log("request happened : " + data)
+            }
 		});
     });
 
