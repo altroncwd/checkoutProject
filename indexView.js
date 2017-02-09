@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+    
 	console.log("jQuery is working");
 
     $("#checkout").click(function(){
