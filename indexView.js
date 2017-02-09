@@ -8,6 +8,7 @@ $(document).ready(function(){
 
     $("#checkin").click(function(){
         alert("Checking In");
+        Controller().checkInDevice();
     });
 
     $("#swapdevices").click(function(){
@@ -15,37 +16,32 @@ $(document).ready(function(){
     });
 
     $("#addRemove").click(function(){
+        
+        if( $("#deviceName").val() == "" ||
+            $("#deviceModel").val() == "" ||
+            $("#deviceOS").val() == "" ){
+            alert("Please fill out all the fields");
+        } else {
+            Controller().addNewDevice(  $("#deviceName").val(),
+                                        $("#deviceModel").val(),
+                                        $("#deviceOS").val()    );
+        }
 
-        let data = {
-            action : "addDevice",
-        	deviceName : $("#deviceName").val(),
-        	deviceModel : $("#deviceModel").val(),
-            deviceOS : $("#deviceOS").val()
-        };
-
-        alert(`Trying to add device : ${data.deviceName} : ${data.deviceModel}`);
-        			
-        $.post("server.php?", data, function (data){
-			if (data === "Invalid query"){
-                console.log("request failed : Duplicate device name");
-                alert("Duplicate Devices Name");
-                console.log(data);
-            } else {
-                console.log("request happened : " + data);
-            }
-		});
     });
 
-    const displayOutDevices = function (dbList) {
+    // const displayOutDevices = function (dbList) {
 
-    	//temp, remove me when there is a db connection
-    	/* let */dbList = ['apple', "banana", "orange"];
+    // 	//temp, remove me when there is a db connection
+    // 	/* let */dbList = ['apple', "banana", "orange"];
 
-    	for(var i = 0; i < dbList.length; i++) {
+    // 	for(var i = 0; i < dbList.length; i++) {
     		
-    		let display = "<pre class= 'col-md-4'>" + dbList[i] + "</pre>";
-    		$("#deviceList").append(display);
-    	}
-    }
-    displayOutDevices();
+    // 		let display = "<pre class= 'col-md-4'>" + dbList[i] + "</pre>";
+    // 		$("#deviceList").append(display);
+    // 	}
+    // }
+    // displayOutDevices();
+
+    Controller().renderCheckoutLogs();
+
 });
