@@ -11,13 +11,28 @@ Maybe wrapping all my models in a function which returns an object with methods 
   This does still mean one could access the the function from the global scope to get access to these methods though, but better then simple global values
 */
 
-const Model (){
-	let methodsAccess = {};
+const StorageModel (){
+	let deviceStorageAccess = {
+		allDevices : "temp",
+		allCheckoutLogs: "temp",
+	};
 
-	// store our data here for local use
+	deviceStorageAccess.deviceInformation = function (){
+		return {
+			allDevices : this.allDevices
+		};
+	};
+
+	deviceStorageAccess.deviceLogs = function (){
+		return {
+			allCheckoutLogs : this.allCheckoutLogs
+		};
+	};
 
 
-
-	return methodsAccess;
+	return {
+		allDevices : StorageModel.deviceInformation(),
+		deviceLogs : StorageModel.deviceLogs()
+	};
 
 }
