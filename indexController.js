@@ -5,13 +5,29 @@ for this project we will place our requests and future filting here
 
 const Controller = function () {
 
-	const checkOutDevice = function (deviceName, username){
+	const checkOutDevice = function (deviceName, userName){
 		//for checking out a device
+		let data = {
+			action : "checkOut",
+			deviceName : deviceName,
+			userName : userName,
+		};
+
+		//I need to do multiple things, first i need to update the Device list
+
+		//As long as that update happens, then I can add the checkoutLog
+		$.post("server.php?", data, function(returnData){
+			if(returnData == "failed"){
+				alert("something went wrong");
+			} else {
+				alert("thank you for your submition");
+				console.log(returnData);
+			}
+		})
 	};
 
 	const checkInDevice = function (deviceName, username){
 		//for checking in a device
-		console.log(1);
 	};
 
 	const quickSwapDevice = function (deviceNub1, deviceNub2){
@@ -41,13 +57,13 @@ const Controller = function () {
 
         alert(`Trying to add device : ${data.deviceName} : ${data.deviceModel}`);
         			
-        $.post("server.php?", data, function (data){
-			if (data === "Invalid query"){
+        $.post("server.php?", data, function (returnData){
+			if (returnData === "Invalid query"){
                 console.log("request failed : Duplicate device name");
                 alert("Duplicate Devices Name");
-                console.log(data);
+                console.log(returnData);
             } else {
-                console.log("request happened : " + data);
+                console.log("request happened : " + returnData);
             }
 		});
 

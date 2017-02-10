@@ -2,13 +2,14 @@ $(document).ready(function(){
     
 	console.log("jQuery is working");
 
-    $("#checkout").click(function(){
-        alert("trying to check something out");
+    $("#checkout.btn").click(function(){
+        Controller().checkOutDevice(    $("#checkout.deviceName").val(),
+                                        $("#checkout.userName").val()   );
     });
 
     $("#checkin").click(function(){
         alert("Checking In");
-        Controller().checkInDevice();
+        // Controller().checkInDevice();
     });
 
     $("#swapdevices").click(function(){
@@ -16,15 +17,15 @@ $(document).ready(function(){
     });
 
     $("#addRemove").click(function(){
-        
-        if( $("#deviceName").val() == "" ||
-            $("#deviceModel").val() == "" ||
-            $("#deviceOS").val() == "" ){
+        // should I move this logic to the controller?
+        if( $("#newDevice.deviceName").val() == "" ||
+            $("#newDevice.deviceModel").val() == "" ||
+            $("#newDevice.deviceOS").val() == "" ){
             alert("Please fill out all the fields");
         } else {
-            Controller().addNewDevice(  $("#deviceName").val(),
-                                        $("#deviceModel").val(),
-                                        $("#deviceOS").val()    );
+            Controller().addNewDevice(  $("#newDevice.deviceName").val(),
+                                        $("#newDevice.deviceModel").val(),
+                                        $("#newDevice.deviceOS").val()    );
         }
 
     });

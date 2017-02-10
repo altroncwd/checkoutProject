@@ -8,17 +8,23 @@
 		// 	echo json_encode($list);
 		// }
 
+		if($_REQUEST["action"] == "checkOut"){
+			// need to make a query to add to the checkoutLog
+		}
+
+
+
 		if ($_REQUEST["action"] == "addDevice"){
 
 			// create query
-			$queryRequest = "INSERT INTO `deviceList` (`id`, `deviceName`, `phoneModel`, `osVersion`, `status`) ";
-			$queryRequest.= "VALUES (NULL, '" . $_REQUEST["deviceName"]; 			
-			$queryRequest.=	"', '" . $_REQUEST["deviceModel"];
-			$queryRequest.=	"', '" . $_REQUEST["deviceOS"] . "', 'available')";
+			$addDeviceQuery = "INSERT INTO `deviceList` (`id`, `deviceName`, `phoneModel`, `osVersion`, `status`) ";
+			$addDeviceQuery.= "VALUES (NULL, '" . $_REQUEST["deviceName"]; 			
+			$addDeviceQuery.=	"', '" . $_REQUEST["deviceModel"];
+			$addDeviceQuery.=	"', '" . $_REQUEST["deviceOS"] . "', 'available')";
 
 
 
-			$results = mysqli_query($dbConnection, $queryRequest);
+			$results = mysqli_query($dbConnection, $addDeviceQuery);
 			if(!$results){
 				die("Invalid query" . mysql_error());
 			} else {
