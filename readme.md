@@ -32,14 +32,14 @@ in addition you will need to create two of the following tables:
   - deviceName(string)
   - user      (string)
   - inOrOut   (string)
-  - date      (date)
+  - date      (timestamp)
 ```
 
 ```
   deviceList
   - id          (primary + auto increment)
   - deviceName  (string + unique)
-  - phoneModel (string)
+  - phoneModel  (string)
   - osVersion   (string)
   - status      (string)
 
