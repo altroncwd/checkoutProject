@@ -29,7 +29,7 @@ in addition you will need to create two of the following tables:
 
 ```
   checkoutLog
-  - id        (int)
+  - deviceName(string)
   - user      (string)
   - inOrOut   (string)
   - date      (date)

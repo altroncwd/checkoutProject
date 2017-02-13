@@ -1,15 +1,35 @@
 <?php
 
 	if($_SERVER['REQUEST_METHOD'] === 'POST'){
-		// echo "WOHHH you got this far";
-		// if ( $_REQUEST["action"] == "checkout"){
-		// 	$list = [ 	"deviceName" => $_REQUEST["deviceName"],
-		// 				"userName" => $_REQUEST["userName"]];
-		// 	echo json_encode($list);
-		// }
+	
 
 		if($_REQUEST["action"] == "checkOut"){
-			// need to make a query to add to the checkoutLog
+
+			$changeStatusQuery  = " UPDATE `deviceList` SET `status`= 'Checked Out' ";
+			$changeStatusQuery .= " WHERE `deviceName` =  '" . $_REQUEST['deviceName'] . "'";
+			$changeStatusQuery .= " AND `status` = 'available' ";
+
+			$results = mysqli_query($dbConnection, $changeStatusQuery);
+			
+			$deviceLogQuery  = "INSERT INTO `checkoutLog` (`deviceName`, `user`,`date`, `inOrOut`)";
+			$deviceLogQuery .= "VALUES ('" . $_REQUEST['deviceName']  . "' ,";
+			$deviceLogQuery .= "'" . $_REQUEST['userName'] . "' ,";
+			$deviceLogQuery .= "'" . date("Y-m-d H:i:s") . "',";
+			$deviceLogQuery .= "'Out' )";
+
+			// checking fo the number of rows effected in the last query just in case values are off
+			if(!mysqli_affected_rows($dbConnection)){
+				die("Invalid update query :" . $changeStatusQuery);
+			} else {
+				// when a query suceeds its return value will be the number of rows effected
+				$insertResults = mysqli_query($dbConnection, $deviceLogQuery);
+
+				if(!$insertResults){
+					die("invalid insert query" . mysql_error()); 
+				} else{
+					echo json_encode("Device records sent : " . $results);
+				}
+			}
 		}
 
 

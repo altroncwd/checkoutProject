@@ -13,7 +13,6 @@
 	
 	include "GET.php";
 
-	include "UPDATE.php";
 
 	// if ( $_REQUEST['action'] == 'checkin'){
 

@@ -7,23 +7,34 @@ const Controller = function () {
 
 	const checkOutDevice = function (deviceName, userName){
 		//for checking out a device
-		let data = {
+		let checkoutData = {
 			action : "checkOut",
 			deviceName : deviceName,
 			userName : userName,
 		};
-
 		//I need to do multiple things, first i need to update the Device list
+		// $.ajax({
+		// 	url: "server.php",
+		// 	type: "PUT",
+		// 	data: checkoutData,
+		// 	success: function (returnData){
+		// 		console.log(returnData);
+		// 	}
+		// })
 
+		// $.put("server.php", checkoutData, function (returnData){
+		// 	console.log('returnData');
+		// });
 		//As long as that update happens, then I can add the checkoutLog
-		$.post("server.php?", data, function(returnData){
+		
+		$.post("server.php", checkoutData, function(returnData){
 			if(returnData == "failed"){
 				alert("something went wrong");
 			} else {
 				alert("thank you for your submition");
 				console.log(returnData);
 			}
-		})
+		});
 	};
 
 	const checkInDevice = function (deviceName, username){
@@ -57,7 +68,7 @@ const Controller = function () {
 
         alert(`Trying to add device : ${data.deviceName} : ${data.deviceModel}`);
         			
-        $.post("server.php?", data, function (returnData){
+        $.post("server.php", data, function (returnData){
 			if (returnData === "Invalid query"){
                 console.log("request failed : Duplicate device name");
                 alert("Duplicate Devices Name");
