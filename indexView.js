@@ -3,12 +3,23 @@ $(document).ready(function(){
 	console.log("jQuery is working");
 
     $("#checkout.btn").click(function(){
-        Controller().checkOutDevice(    $("#checkout.deviceName").val(),
-                                        $("#checkout.userName").val()   );
+        if( $("#checkout.deviceName").val() == "" ||
+            $("#checkout.userName").val() == ""){
+            alert("Please fill out all the required fields");
+        } else {
+            Controller().checkOutDevice(    $("#checkout.deviceName").val(),
+                                            $("#checkout.userName").val()   );
+        }
     });
 
-    $("#checkin").click(function(){
-        alert("Checking In");
+    $("#checkin.btn").click(function(){
+        if( $("#checkin.deviceName").val() == "" ||
+            $("#checkin.userName").val() == "" ){
+            alert("Please fill out all the required fields");
+        } else {
+            Controller().checkInDevice( $("#checkin.deviceName").val(),
+                                        $("#checkin.userName").val()    );
+        }
         // Controller().checkInDevice();
     });
 

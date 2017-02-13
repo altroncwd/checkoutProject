@@ -32,6 +32,34 @@
 			}
 		}
 
+		if($_REQUEST["action"] === 'checkIn'){
+
+			$changeStatusQuery  = " UPDATE `deviceList` SET `status`= 'available' ";
+			$changeStatusQuery .= " WHERE `deviceName` =  '" . $_REQUEST['deviceName'] . "'";
+			$changeStatusQuery .= " AND `status` = 'Checked Out' ";
+
+			$results = mysqli_query($dbConnection, $changeStatusQuery);
+			
+			$deviceLogQuery  = "INSERT INTO `checkoutLog` (`deviceName`, `user`,`date`, `inOrOut`)";
+			$deviceLogQuery .= "VALUES ('" . $_REQUEST['deviceName']  . "' ,";
+			$deviceLogQuery .= "'" . $_REQUEST['userName'] . "' ,";
+			$deviceLogQuery .= "'" . date("Y-m-d H:i:s") . "',";
+			$deviceLogQuery .= "'In' )";
+
+			// checking fo the number of rows effected in the last query just in case values are off
+			if(!mysqli_affected_rows($dbConnection)){
+				die("Invalid update query :" . $changeStatusQuery);
+			} else {
+				// when a query suceeds its return value will be the number of rows effected
+				$insertResults = mysqli_query($dbConnection, $deviceLogQuery);
+
+				if(!$insertResults){
+					die("invalid insert query" . mysql_error()); 
+				} else{
+					echo json_encode("Device records sent : " . $results);
+				}
+			}
+		}
 
 
 		if ($_REQUEST["action"] == "addDevice"){
@@ -42,8 +70,6 @@
 			$addDeviceQuery.=	"', '" . $_REQUEST["deviceModel"];
 			$addDeviceQuery.=	"', '" . $_REQUEST["deviceOS"] . "', 'available')";
 
-
-
 			$results = mysqli_query($dbConnection, $addDeviceQuery);
 			if(!$results){
 				die("Invalid query" . mysql_error());
@@ -51,8 +77,6 @@
 				echo json_encode("It worked : " . $results);
 				// when a query suceeds it will be listed as 1
 			}
-
-			// echo json_encode($list);
 
 		}
 

@@ -10,22 +10,8 @@ const Controller = function () {
 		let checkoutData = {
 			action : "checkOut",
 			deviceName : deviceName,
-			userName : userName,
+			userName : userName
 		};
-		//I need to do multiple things, first i need to update the Device list
-		// $.ajax({
-		// 	url: "server.php",
-		// 	type: "PUT",
-		// 	data: checkoutData,
-		// 	success: function (returnData){
-		// 		console.log(returnData);
-		// 	}
-		// })
-
-		// $.put("server.php", checkoutData, function (returnData){
-		// 	console.log('returnData');
-		// });
-		//As long as that update happens, then I can add the checkoutLog
 		
 		$.post("server.php", checkoutData, function(returnData){
 			if(returnData == "failed"){
@@ -37,8 +23,21 @@ const Controller = function () {
 		});
 	};
 
-	const checkInDevice = function (deviceName, username){
-		//for checking in a device
+	const checkInDevice = function (deviceName, userName){
+		let checkoutData = {
+			action : "checkIn",
+			deviceName : deviceName,
+			userName : userName,
+		};
+
+		$.post("server.php", checkoutData, function(returnData){
+			if(returnData == "failed"){
+				alert("something went wrong");
+			} else {
+				alert("thank you for your submition");
+				console.log(returnData);
+			}
+		});
 	};
 
 	const quickSwapDevice = function (deviceNub1, deviceNub2){
