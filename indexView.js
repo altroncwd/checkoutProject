@@ -20,7 +20,10 @@ $(document).ready(function(){
             alert("Please fill out all the required fields");
         } else {
             Controller().checkInDevice( $("#checkin.deviceName").val(),
-                                        $("#checkin.userName").val()    ).then(fucntion(){}, function(){});
+                                        $("#checkin.userName").val()    )
+            .done(function(returnValue){
+                console.log("testing" + returnValue);
+            })
         }
         // Controller().checkInDevice();
     });

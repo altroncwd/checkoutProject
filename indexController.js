@@ -39,6 +39,7 @@ const Controller = function () {
 			} else {
 				alert("thank you for your submition");
 				console.log(returnData);
+				return true;
 			}
 		});
 	};
