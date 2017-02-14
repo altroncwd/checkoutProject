@@ -34,8 +34,8 @@ const Controller = function () {
 	const renderCheckoutLogs = function (timeSpan){
 		//used to display devices between Today, Week, All
 		//temp, remove me when there is a db connection
-    	/* let */dbList = ['apple', "banana", "orange"];
-
+    	let dbList = ['apple', "banana", "orange"];
+    	console.log(" *A* ......" + StorageModel().retreiveAllDeviceLogs());
     	for(var i = 0; i < dbList.length; i++) {
     		
     		let display = "<pre class= 'col-md-4'>" + dbList[i] + "</pre>";

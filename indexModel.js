@@ -11,28 +11,41 @@ Maybe wrapping all my models in a function which returns an object with methods 
   This does still mean one could access the the function from the global scope to get access to these methods though, but better then simple global values
 */
 
-const StorageModel (){
+const StorageModel = function (){
 	let deviceStorageAccess = {
-		allDevices : "temp",
-		allCheckoutLogs: "temp",
+		allDevices : [],
+		allCheckoutLogs: []
 	};
 
-	deviceStorageAccess.deviceInformation = function (){
-		return {
-			allDevices : this.allDevices
-		};
+	deviceStorageAccess.updateDeviceInformation = function (){
+		return $.get("server.php", {logs : "deviceInformation"})
+			.done(function(returnValue){
+				deviceStorageAccess.allDevices = returnValue;
+				console.log("WOOOOOOOO : " + returnValue);
+			});
 	};
 
-	deviceStorageAccess.deviceLogs = function (){
-		return {
-			allCheckoutLogs : this.allCheckoutLogs
-		};
+	deviceStorageAccess.updateDeviceLogs = function (){
+		return $.get("server.php", {logs : "checkoutLogs"})
+			.done(function(returnValue){
+				deviceStorageAccess.allCheckoutLogs = returnValue;
+				console.log("WOTTTTTTT : " + returnValue);
+			});
 	};
 
+	deviceStorageAccess.retreiveAllDeviceInfo = function (){
+		return this.allDevices;
+	};
+
+	deviceStorageAccess.retreiveAllDeviceLogs = function (){
+		return this.allCheckoutLogs;
+	};
 
 	return {
-		allDevices : StorageModel.deviceInformation(),
-		deviceLogs : StorageModel.deviceLogs()
+		updateAllDevices : deviceStorageAccess.updateDeviceInformation,
+		updateDeviceLogs : deviceStorageAccess.updateDeviceLogs,
+		retreiveAllDeviceInfo : deviceStorageAccess.retreiveAllDeviceInfo,
+		retreiveAllDeviceLogs :deviceStorageAccess.retreiveAllDeviceLogs
 	};
 
-}
+};

@@ -32,7 +32,6 @@ $(document).ready(function(){
             Controller().checkInDevice( $("#checkin.deviceName").val(),
                                         $("#checkin.userName").val()    )
             .done(function(returnValue){
-                console.log("|----| " + returnValue);
                 console.log(returnValue.indexOf("invalid insert query"));
                 if (returnValue.indexOf("invalid insert query") > -1 ){
                     alert("Unable to check in device, check device name");
@@ -43,11 +42,11 @@ $(document).ready(function(){
                 }
             })
         }
-        // Controller().checkInDevice();
+
     });
 
     $("#swapdevices").click(function(){
-        alert("Swaping Devices");
+
     });
 
     $("#addRemove").click(function(){
@@ -76,6 +75,8 @@ $(document).ready(function(){
     });
 
 
-    Controller().renderCheckoutLogs();
-
+    StorageModel().updateDeviceLogs()
+        .done(Controller().renderCheckoutLogs());
+    StorageModel().updateAllDevices();
+    // Controller().renderCheckoutLogs();
 });
