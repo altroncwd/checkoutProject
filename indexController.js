@@ -12,17 +12,8 @@ const Controller = function () {
 			deviceName : deviceName,
 			userName : userName
 		};
-
-		let success = false;
 		
-		$.post("server.php", checkoutData, function(returnData){
-			if(returnData == "failed"){
-				alert("something went wrong");
-			} else {
-				alert("thank you for your submition");
-				console.log(returnData);
-			}
-		});
+		return $.post("server.php", checkoutData);
 
 	};
 
@@ -33,15 +24,7 @@ const Controller = function () {
 			userName : userName,
 		};
 
-		return $.post("server.php", checkoutData, function(returnData){
-			if(returnData == "failed"){
-				alert("something went wrong");
-			} else {
-				alert("thank you for your submition");
-				console.log(returnData);
-				return true;
-			}
-		});
+		return $.post("server.php", checkoutData);
 	};
 
 	const quickSwapDevice = function (deviceNub1, deviceNub2){
@@ -68,18 +51,8 @@ const Controller = function () {
         	deviceModel : deviceModel,
             deviceOS : deviceOS
         };
-
-        alert(`Trying to add device : ${data.deviceName} : ${data.deviceModel}`);
         			
-        $.post("server.php", data, function (returnData){
-			if (returnData === "Invalid query"){
-                console.log("request failed : Duplicate device name");
-                alert("Duplicate Devices Name");
-                console.log(returnData);
-            } else {
-                console.log("request happened : " + returnData);
-            }
-		});
+        return $.post("server.php", data);
 
 	};
 
