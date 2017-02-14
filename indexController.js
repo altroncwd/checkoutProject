@@ -12,6 +12,8 @@ const Controller = function () {
 			deviceName : deviceName,
 			userName : userName
 		};
+
+		let success = false;
 		
 		$.post("server.php", checkoutData, function(returnData){
 			if(returnData == "failed"){
@@ -21,6 +23,7 @@ const Controller = function () {
 				console.log(returnData);
 			}
 		});
+
 	};
 
 	const checkInDevice = function (deviceName, userName){
@@ -30,7 +33,7 @@ const Controller = function () {
 			userName : userName,
 		};
 
-		$.post("server.php", checkoutData, function(returnData){
+		return $.post("server.php", checkoutData, function(returnData){
 			if(returnData == "failed"){
 				alert("something went wrong");
 			} else {

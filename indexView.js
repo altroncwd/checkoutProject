@@ -8,7 +8,9 @@ $(document).ready(function(){
             alert("Please fill out all the required fields");
         } else {
             Controller().checkOutDevice(    $("#checkout.deviceName").val(),
-                                            $("#checkout.userName").val()   );
+                                                          $("#checkout.userName").val()   );
+
+            // $.Get/post requests run acyn, meaning the parent function will finish before the request.  Will need to create a way to clear input fileds on succesfull resuets
         }
     });
 
@@ -18,7 +20,7 @@ $(document).ready(function(){
             alert("Please fill out all the required fields");
         } else {
             Controller().checkInDevice( $("#checkin.deviceName").val(),
-                                        $("#checkin.userName").val()    );
+                                        $("#checkin.userName").val()    ).then(fucntion(){}, function(){});
         }
         // Controller().checkInDevice();
     });
