@@ -2,12 +2,58 @@ $(document).ready(function(){
     
 	console.log("jQuery is working");
 
+    let controllMethods = Controller();
+
+
+    //------------------------ Info Storage/Methods section ------------------
+    let deviceStorageAccess = {
+        allDevices : [],
+        allCheckoutLogs: []
+    };
+
+    deviceStorageAccess.updateDeviceInformation = function (){
+        return $.get("server.php", {logs : "deviceInformation"})
+            .done(function(returnValue){
+                deviceStorageAccess.allDevices = returnValue;
+            });
+    };
+
+    deviceStorageAccess.updateDeviceLogs = function (){
+        let upperScope = this;
+        // we know our db is sending us JSON so we use getJSON rather than get
+        return $.getJSON("server.php", {logs : "checkoutLogs"})
+            .done(function(returnValue){
+                deviceStorageAccess.allCheckoutLogs = returnValue;
+            });
+    };
+
+    // deviceStorageAccess.retreiveAllDeviceInfo = function (){
+    //     return this.allDevices;
+    // };
+
+    // deviceStorageAccess.retreiveAllDeviceLogs = function (){
+    //     return this.allCheckoutLogs;
+    // };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     $("#checkout.btn").click(function(){
         if( $("#checkout.deviceName").val() == "" ||
             $("#checkout.userName").val() == ""){
             alert("Please fill out all the required fields");
         } else {
-            Controller().checkOutDevice(    $("#checkout.deviceName").val(),
+            controllMethods.checkOutDevice(    $("#checkout.deviceName").val(),
                                             $("#checkout.userName").val()   )
                 .done(function(returnValue){
                     if(returnValue.indexOf("Invalid update query :") > -1 ){
@@ -29,7 +75,7 @@ $(document).ready(function(){
             $("#checkin.userName").val() == "" ){
             alert("Please fill out all the required fields");
         } else {
-            Controller().checkInDevice( $("#checkin.deviceName").val(),
+            controllMethods.checkInDevice( $("#checkin.deviceName").val(),
                                         $("#checkin.userName").val()    )
             .done(function(returnValue){
                 console.log(returnValue.indexOf("invalid insert query"));
@@ -56,7 +102,7 @@ $(document).ready(function(){
             $("#newDevice.deviceOS").val() == "" ){
             alert("Please fill out all the fields");
         } else {
-            Controller().addNewDevice(  $("#newDevice.deviceName").val(),
+            controllMethods.addNewDevice(  $("#newDevice.deviceName").val(),
                                         $("#newDevice.deviceModel").val(),
                                         $("#newDevice.deviceOS").val()    )
                 .done(function(returnValue){
@@ -74,9 +120,15 @@ $(document).ready(function(){
 
     });
 
-
-    StorageModel().updateDeviceLogs()
-        .done(Controller().renderCheckoutLogs());
-    StorageModel().updateAllDevices();
-    // Controller().renderCheckoutLogs();
+    
+    deviceStorageAccess.updateDeviceLogs()
+        .done(function(){
+            controllMethods.renderCheckoutLogs(deviceStorageAccess.allCheckoutLogs);
+        });
+    // deviceStorageAccess.updateDeviceLogs()
+    //     .done(function(){
+    //         console.log(StorageModel().retreiveAllDeviceLogs);
+    //     });
+    // StorageModel().updateAllDevices();
+    // controllMethods.renderCheckoutLogs();
 });

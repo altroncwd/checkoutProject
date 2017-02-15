@@ -13,6 +13,14 @@
 	<script src="indexController.js"></script>
 	<script src="indexModel.js"></script>
 	<script src="indexView.js"></script>
+	<style type="text/css">
+		div.Out {
+			background-color: #ffe6e6;
+		}
+		div.In {
+			background-color: #e6ffe6;
+		}
+	</style>
 </head>
 <body class="text-center">
 
@@ -42,11 +50,20 @@
 			<button id="swapdevices" type="button" class="btn btn-primary">Swap Devices</button>
 		</div>
 	</div>
+	
+	<h3> Devices Status </h3>
+	<hr>
+	<div id = "deviceStatus">
+	<!-- LIST INFO HERE -->
+	</div>
+
 
 	<h3> Checked Out Devices </h3>
+	<hr>
 	<div id = "deviceList">
-		
-	</div>
+	<!-- List Info Here -->
+	</div>	
+
 
 	<div class="footer navbar-fixed-bottom">
 		<h4> Update Device List</h4>

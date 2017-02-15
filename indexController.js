@@ -31,14 +31,18 @@ const Controller = function () {
 		//used to quickly swap one device for another
 	};
 
-	const renderCheckoutLogs = function (timeSpan){
+	const renderCheckoutLogs = function (list, timeSpan){
 		//used to display devices between Today, Week, All
 		//temp, remove me when there is a db connection
-    	let dbList = ['apple', "banana", "orange"];
-    	console.log(" *A* ......" + StorageModel().retreiveAllDeviceLogs());
+    	let dbList = list;
     	for(var i = 0; i < dbList.length; i++) {
-    		
-    		let display = "<pre class= 'col-md-4'>" + dbList[i] + "</pre>";
+    		let log = dbList[i];
+    		let display = 	`<div class= 'col-md-10 col-md-offset-1'>
+    						<div class= 'col-md-3'> DeviceName : ${log.deviceName} </div>
+    						<div class= 'col-md-3'> User : ${log.user} </div>
+    						<div class= 'col-md-3 ${log.inOrOut}'> Checkin Status : ${log.inOrOut} </div>
+    						<div class= 'col-md-3'> Time : ${log.date} </div>
+					 		</pre>`;
     		$("#deviceList").append(display);
     	}
 	};
