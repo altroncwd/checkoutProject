@@ -37,14 +37,26 @@ const Controller = function () {
     	let dbList = list;
     	for(var i = 0; i < dbList.length; i++) {
     		let log = dbList[i];
-    		let display = 	`<div class= 'col-md-10 col-md-offset-1'>
-    						<div class= 'col-md-3'> DeviceName : ${log.deviceName} </div>
-    						<div class= 'col-md-3'> User : ${log.user} </div>
-    						<div class= 'col-md-3 ${log.inOrOut}'> Checkin Status : ${log.inOrOut} </div>
-    						<div class= 'col-md-3'> Time : ${log.date} </div>
-					 		</pre>`;
-    		$("#deviceList").append(display);
+    		let display = 	`<div class= "col-md-10 col-md-offset-1">
+    						<div class= "col-md-3"> ${log.deviceName} </div>
+    						<div class= "col-md-3"> ${log.user} </div>
+    						<div class= "col-md-3 ${log.inOrOut}"> ${log.inOrOut} </div>
+    						<div class= "col-md-3"> ${log.date} </div>`;
+    		$("#checkoutLogs").append(display);
     	}
+	};
+
+	const renderDeviceList = function (list){
+		let deviceList = list;
+		for (var i = 0; i < deviceList.length; i++) {
+			let device = deviceList[i];
+			let display = 	`<div class= "col-md-10 col-md-offset-1">
+							<div class="col-md-3"> ${device.deviceName} </div>
+							<div class="col-md-3"> ${device.phoneModel} </div>
+							<div class="col-md-3"> ${device.osVersion} </div>
+							<div class="col-md-3 ${device.status}"> ${device.status} </div>`;
+			$("#deviceStatus").append(display);
+		}
 	};
 
 	const addNewDevice = function (deviceName, deviceModel, deviceOS){
@@ -72,5 +84,6 @@ const Controller = function () {
 		renderCheckoutLogs 	: 	renderCheckoutLogs,
 		addNewDevice		: 	addNewDevice,
 		updateDeviceInformation	: updateDeviceInformation,
+		renderDeviceList 	: 	renderDeviceList,
 	};
 };

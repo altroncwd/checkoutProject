@@ -11,7 +11,6 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<script src="indexController.js"></script>
-	<script src="indexModel.js"></script>
 	<script src="indexView.js"></script>
 	<style type="text/css">
 		div.Out {
@@ -20,6 +19,10 @@
 		div.In {
 			background-color: #e6ffe6;
 		}
+		div.available {
+			background-color: #e6ffe6
+		}
+		div.
 	</style>
 </head>
 <body class="text-center">
@@ -53,14 +56,26 @@
 	
 	<h3> Devices Status </h3>
 	<hr>
-	<div id = "deviceStatus">
+	<div id = "deviceStatus" class= "col-md-10 col-md-offset-1">
+		<div class= "col-md-10 col-md-offset-1">
+			<div class="col-md-3"><h4> DeviceName </h4> </div>
+			<div class="col-md-3"><h4> Device Model  </h4> </div>
+			<div class="col-md-3"><h4> OS Version </h4> </div>
+			<div class="col-md-3"><h4> Device Status </h4> </div>
+		</div>
 	<!-- LIST INFO HERE -->
 	</div>
 
 
 	<h3> Checked Out Devices </h3>
 	<hr>
-	<div id = "deviceList">
+	<div id = "checkoutLogs" class= "col-md-10 col-md-offset-1">
+		<div class= "col-md-10 col-md-offset-1">
+			<div class= "col-md-3"> <h4>DeviceName</h4>  </div>
+			<div class= "col-md-3"> <h4>User</h4> </div>
+			<div class= "col-md-3"> <h4>Checkin Status</h4> </div>
+			<div class= "col-md-3"> <h4>Time</h4> </div>
+		</div>
 	<!-- List Info Here -->
 	</div>	
 

@@ -12,14 +12,13 @@ $(document).ready(function(){
     };
 
     deviceStorageAccess.updateDeviceInformation = function (){
-        return $.get("server.php", {logs : "deviceInformation"})
+        return $.getJSON("server.php", {logs : "deviceInformation"})
             .done(function(returnValue){
                 deviceStorageAccess.allDevices = returnValue;
             });
     };
 
     deviceStorageAccess.updateDeviceLogs = function (){
-        let upperScope = this;
         // we know our db is sending us JSON so we use getJSON rather than get
         return $.getJSON("server.php", {logs : "checkoutLogs"})
             .done(function(returnValue){
@@ -125,10 +124,9 @@ $(document).ready(function(){
         .done(function(){
             controllMethods.renderCheckoutLogs(deviceStorageAccess.allCheckoutLogs);
         });
-    // deviceStorageAccess.updateDeviceLogs()
-    //     .done(function(){
-    //         console.log(StorageModel().retreiveAllDeviceLogs);
-    //     });
-    // StorageModel().updateAllDevices();
-    // controllMethods.renderCheckoutLogs();
+    deviceStorageAccess.updateDeviceInformation()
+        .done(function(){
+            controllMethods.renderDeviceList(deviceStorageAccess.allDevices);
+        });
+
 });
