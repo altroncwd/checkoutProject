@@ -60,8 +60,9 @@ $(document).ready(function(){
                         alert("Something wen't wrong, check your device name");
                     } else {
                         // call a toaster?
-                        $("#checkout.deviceName").val("");
-                        $("#checkout.userName").val("");
+                        // $("#checkout.deviceName").val("");
+                        // $("#checkout.userName").val("");
+                        window.location.reload()
                     }
                 });
 
@@ -79,11 +80,13 @@ $(document).ready(function(){
             .done(function(returnValue){
                 console.log(returnValue.indexOf("invalid insert query"));
                 if (returnValue.indexOf("invalid insert query") > -1 ){
+                    // replace with error popup?
                     alert("Unable to check in device, check device name");
                 } else {
                     // call a toaster?
-                    $("#checkin.deviceName").val("");
-                    $("#checkin.userName").val("");
+                    // $("#checkin.deviceName").val("");
+                    // $("#checkin.userName").val("");
+                    window.location.reload()
                 }
             })
         }
@@ -109,10 +112,11 @@ $(document).ready(function(){
                     if( returnValue.indexOf("Invalid query") > -1){
                         alert("Device failed to add, device name might already exist. Please check device names");
                     } else {
-                        alert("Device Succesfully added");
-                        $("#newDevice.deviceName").val("");
-                        $("#newDevice.deviceModel").val("");
-                        $("#newDevice.deviceOS").val("");
+                        // alert("Device Succesfully added");
+                        // $("#newDevice.deviceName").val("");
+                        // $("#newDevice.deviceModel").val("");
+                        // $("#newDevice.deviceOS").val("");
+                        window.location.reload()
                     }
                 });
         }
