@@ -12,18 +12,9 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<script src="indexController.js"></script>
 	<script src="indexView.js"></script>
-	<style type="text/css">
-		div.Out {
-			background-color: #ffe6e6;
-		}
-		div.In {
-			background-color: #e6ffe6;
-		}
-		div.available {
-			background-color: #e6ffe6
-		}
-		div.
-	</style>
+	<style type="text/css" src="style.css"></style>
+	<link rel="stylesheet" href="style.css"/>
+
 </head>
 <body class="text-center">
 
@@ -38,12 +29,15 @@
 			<div><input id="checkout" class="deviceName" type="text" value="device name"></div>
 			<div><input id="checkout" class="userName" type="text" value="your name"></div>
 			<button id="checkout" type="button" class="btn btn-primary">Check Out</button>
+			<!-- Trigger/Open The Modal -->
+			<button id="myBtn" class="btn btn-info">Open Modal</button>
 		</div>
 		<div class="col-md-4">
 			<!-- <p>Temp Input fields, to be removed for popup</p> -->
 			<div><input id="checkin" class="deviceName" type="text" value="device name"></div>
 			<div><input id="checkin" class="userName" type="text" value="your name"></div>
 			<button id="checkin" type="button" class="btn btn-primary">Check In</button>
+			<button class="btn btn-info"> Test button</button>
 		</div>
 		<div class="col-md-4">
 			<p>COMING SOON</p>
@@ -81,11 +75,81 @@
 
 
 	<div class="footer navbar-fixed-bottom">
+
+		<!-- The CHECKOUT Modal -->
+		<div id="myModal" class="modal">
+		  <!-- Modal content -->
+		  <div class="modal-content">
+		    <span class="close">&times;</span>
+		    <h3>CHECK OUT</h3>
+		    <input type="text" value="Name">
+		    <p>List of devices availible for checkout</p>
+		    <button class="btn btn-primary">SUBMIT</button>
+		  </div>
+		</div>
+
+		<!-- The CHECKIN Modal -->
+		<div id="myModal" class="modal">
+		  <!-- Modal content -->
+		  <div class="modal-content">
+		    <span class="close">&times;</span>
+		    <h3>CHECK IN</h3>
+		    <input type="text" value="Name">
+		    <p>List of devices availible for checkout</p>
+		    <button class="btn btn-primary">SUBMIT</button>
+		  </div>
+		</div>
+
+		<!-- The ADD/UPDATE DEVICE Modal -->
+		<div id="myModal" class="modal">
+		  <!-- Modal content -->
+		  <div class="modal-content">
+		    <span class="close">&times;</span>
+		    <h3>ADD / Edit Device</h3>
+		    <input type="text" value="Name">
+		    <input type="text" value="Model">
+		    <input type="text" value="OS Version">
+		    <p>List of devices availible for checkout</p>
+		    <button class="btn btn-primary">SUBMIT</button>
+		  </div>
+		</div>
+
+
 		<h4> Update Device List</h4>
 		<button id="addRemove" type="button" class="btn btn-warning"> Add/Remove</button>
+		<button class="btn btn-info">Test Modal</button>
 		<div><input id="newDevice" class="deviceName" type="text" value="Device Name"></div>
 		<div><input id="newDevice" class="deviceModel" type="text" value="Device Model"></div>
 		<div><input id="newDevice" class="deviceOS" type="text" value="Device OS"></div>
 	</div>
+
+	<script>
+	// Get the modal
+	var modal = document.getElementById('myModal');
+
+	// Get the button that opens the modal
+	var btn = document.getElementById("myBtn");
+
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+
+	// When the user clicks the button, open the modal 
+	btn.onclick = function() {
+	    modal.style.display = "block";
+	}
+
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+	    modal.style.display = "none";
+	}
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	    if (event.target == modal) {
+	        modal.style.display = "none";
+	    }
+	}
+	</script>
+
 </body>
 </html>
