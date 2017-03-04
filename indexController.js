@@ -61,14 +61,17 @@ const Controller = function () {
 
 	const renderAvailibleDevices = function (list){
 		let deviceList = list;
-		for (var i = 0; i < deviceList; i++){
+		for (var i = 0; i < deviceList.length; i++){
+			let display = `<button class="btn btn-success"> &times; ${deviceList[i].deviceName} </button>`;
 			if (deviceList[i].status == "Checked Out"){
 				// add to checkIn list
+				$(".deviceCheckList").append(display);
 			} else if (deviceList[i].status == "available"){
 				// add to checkOut list
+				$(".devicesAvailible").append(display);
 			}
 		}
-	}
+	};
 
 	const addNewDevice = function (deviceName, deviceModel, deviceOS){
 		//for adding new devices to the device list
@@ -96,5 +99,6 @@ const Controller = function () {
 		addNewDevice		: 	addNewDevice,
 		updateDeviceInformation	: updateDeviceInformation,
 		renderDeviceList 	: 	renderDeviceList,
+		renderAvailibleDevices : renderAvailibleDevices,
 	};
 };

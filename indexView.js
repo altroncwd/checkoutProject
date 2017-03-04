@@ -179,6 +179,7 @@ $(document).ready(function(){
         .done(function(){
             controllMethods.renderDeviceList(deviceStorageAccess.allDevices);
             console.log(deviceStorageAccess.allDevices);
+            controllMethods.renderAvailibleDevices(deviceStorageAccess.allDevices);
         });
 
 
