@@ -59,6 +59,17 @@ const Controller = function () {
 		}
 	};
 
+	const renderAvailibleDevices = function (list){
+		let deviceList = list;
+		for (var i = 0; i < deviceList; i++){
+			if (deviceList[i].status == "Checked Out"){
+				// add to checkIn list
+			} else if (deviceList[i].status == "available"){
+				// add to checkOut list
+			}
+		}
+	}
+
 	const addNewDevice = function (deviceName, deviceModel, deviceOS){
 		//for adding new devices to the device list
 		let data = {

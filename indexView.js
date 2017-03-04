@@ -26,6 +26,7 @@ $(document).ready(function(){
             });
     };
 
+
     // deviceStorageAccess.retreiveAllDeviceInfo = function (){
     //     return this.allDevices;
     // };
@@ -52,7 +53,7 @@ $(document).ready(function(){
             $("#checkout.userName").val() == ""){
             alert("Please fill out all the required fields");
         } else {
-            controllMethods.checkOutDevice(    $("#checkout.deviceName").val(),
+            controllMethods.checkOutDevice( $("#checkout.deviceName").val(),
                                             $("#checkout.userName").val()   )
                 .done(function(returnValue){
                     if(returnValue.indexOf("Invalid update query :") > -1 ){
@@ -75,8 +76,8 @@ $(document).ready(function(){
             $("#checkin.userName").val() == "" ){
             alert("Please fill out all the required fields");
         } else {
-            controllMethods.checkInDevice( $("#checkin.deviceName").val(),
-                                        $("#checkin.userName").val()    )
+            controllMethods.checkInDevice(  $("#checkin.deviceName").val(),
+                                            $("#checkin.userName").val()    )
             .done(function(returnValue){
                 console.log(returnValue.indexOf("invalid insert query"));
                 if (returnValue.indexOf("invalid insert query") > -1 ){
@@ -104,9 +105,9 @@ $(document).ready(function(){
             $("#newDevice.deviceOS").val() == "" ){
             alert("Please fill out all the fields");
         } else {
-            controllMethods.addNewDevice(  $("#newDevice.deviceName").val(),
-                                        $("#newDevice.deviceModel").val(),
-                                        $("#newDevice.deviceOS").val()    )
+            controllMethods.addNewDevice(   $("#newDevice.deviceName").val(),
+                                            $("#newDevice.deviceModel").val(),
+                                            $("#newDevice.deviceOS").val()    )
                 .done(function(returnValue){
                     //promis handler
                     if( returnValue.indexOf("Invalid query") > -1){
@@ -123,7 +124,53 @@ $(document).ready(function(){
 
     });
 
-    
+
+
+    // ---------- CheckOutModal-----------
+    $("#checkOutModal").click(function() {
+        $(".modal1").css("display", "block");
+    });
+    $('.modal1').click(function(event){
+        // this is checking to make sure its the primary element, and not the children/parents
+        if (event.target == this){
+            $(".modal1").css("display", "none");
+        }
+    });
+    $(".modal1 .close").click(function(){
+        $(".modal1").css("display", "none");
+    });
+    // ---------- CheckInModal-----------
+    $("#checkInModal").click(function() {
+        $(".modal2").css("display", "block");
+    });
+    $('.modal2').click(function(event){
+        if (event.target == this){
+            $(".modal2").css("display", "none");
+        }
+    });
+    $(".modal2 .close").click(function(){
+        $(".modal2").css("display", "none");
+    });
+    // ---------- DeviceModal-----------
+    $("#newDeviceModal").click(function() {
+        $(".modal3").css("display", "block");
+    });
+    $('.modal3').click(function(event){
+        if (event.target == this){
+            $(".modal3").css("display", "none");
+        }
+    });
+    $(".modal3 .close").click(function(){
+        $(".modal3").css("display", "none");
+    });
+
+
+
+
+
+
+
+
     deviceStorageAccess.updateDeviceLogs()
         .done(function(){
             controllMethods.renderCheckoutLogs(deviceStorageAccess.allCheckoutLogs);
@@ -131,6 +178,21 @@ $(document).ready(function(){
     deviceStorageAccess.updateDeviceInformation()
         .done(function(){
             controllMethods.renderDeviceList(deviceStorageAccess.allDevices);
+            console.log(deviceStorageAccess.allDevices);
         });
 
+
+
+
 });
+
+
+
+
+
+
+
+
+
+
+
