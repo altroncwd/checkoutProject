@@ -23,7 +23,7 @@ const Controller = function () {
 
 		let checkoutData = {
 			action : "checkIn",
-			deviceName : deviceName.join("', '"),
+			deviceName : "'" + deviceName.join("', '") + "'",
 			userName : userName,
 			originList : deviceName.join(', '),
 		};

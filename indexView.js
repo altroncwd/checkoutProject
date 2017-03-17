@@ -182,18 +182,20 @@ $(document).ready(function(){
     });
     $(".modal2 .submit").click(function() {
         let userName = $(".modal2 input").val();
-        console.log(userName);
+
         if (userName !== "Name" && userName.length > -1 && deviceStorageAccess.selectedList.length > -1) {
             controllMethods.checkInDevice(  userName,
                                             deviceStorageAccess.selectedList)
             .done(function(returnValue){
-                console.log(returnValue.indexOf("invalid insert query"));
+                console.log(returnValue);
+                // console.log(returnValue.indexOf("invalid insert query"));
+                // console.log((returnValue.indexOf() > -1));
                 if (returnValue.indexOf("invalid insert query") > -1 ){
                     // replace with error popup?
                     alert("Unable to check in device, check device name");
                 } else {
                     // call a toaster?
-                    // window.location.reload()
+                    window.location.reload()
                 }
             })
         }
