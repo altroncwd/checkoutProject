@@ -2,13 +2,13 @@
 This web application is my small personal project to make a basic checkout system for devices while also learning php, and becoming more familiar with jQuery.  The project is intentinally being kept simple to focus my effors rather then building an overwhileming project that braches too much.
 
 I would love to build this application out to a larger extent but for the basic MPV I would like to make a stable/reliable application that can :
-[x] - Check in and out devices
-[x] - Keeps record of when and who checked out devices
-[x] - Ability to add / remove devices
-[x] - Display a visible list of checkout devices
-[x] - Be able to see devices details
-[x] - Have as little manual typing as possible
-[x] - Check in/out multiple devices at once
+- [x] Check in and out devices
+- [x] Keeps record of when and who checked out devices
+- [x] Ability to add / remove devices
+- [x] Display a visible list of checkout devices
+- [x] Be able to see devices details
+- [x] Have as little manual typing as possible
+- [x] Check in/out multiple devices at once
 
 
 Goals I would like to add after I :
