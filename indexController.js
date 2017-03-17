@@ -35,34 +35,36 @@ const Controller = function () {
 		//used to quickly swap one device for another
 	};
 
-	const renderCheckoutLogs = function (list, timeSpan){
-		//used to display devices between Today, Week, All
-		//temp, remove me when there is a db connection
-    	let dbList = list;
-    	for(var i = 0; i < dbList.length; i++) {
-    		let log = dbList[i];
-    		let display = 	`<div class= "col-md-10 col-md-offset-1">
-    						<div class= "col-md-3"> ${log.deviceName} </div>
-    						<div class= "col-md-3"> ${log.user} </div>
-    						<div class= "col-md-3 ${log.inOrOut}"> ${log.inOrOut} </div>
-    						<div class= "col-md-3"> ${log.date} </div>`;
-    		$("#checkoutLogs").append(display);
-    	}
-	};
-
 	const renderDeviceList = function (list){
 		let deviceList = list;
 		for (var i = 0; i < deviceList.length; i++) {
 			let device = deviceList[i];
 			let display = 	`<div class= "col-md-10 col-md-offset-1">
-							<div class="col-md-3"> ${device.deviceName} </div>
-							<div class="col-md-3"> ${device.phoneModel} </div>
-							<div class="col-md-3"> ${device.osVersion} </div>
-							<div class="col-md-3 ${device.status}"> ${device.status} </div>`;
+								<div class="col-md-3"> ${device.deviceName} </div>
+								<div class="col-md-3"> ${device.phoneModel} </div>
+								<div class="col-md-3"> ${device.osVersion} </div>
+								<div class="col-md-3 ${device.status}"> ${device.status} 
+							</div>`;
 			$("#deviceStatus").append(display);
 		}
 	};
 
+	const renderCheckoutLogs = function (list){
+		//used to display devices between Today, Week, All
+		//temp, remove me when there is a db connection
+    	let dbList = list;
+    	for(var i = dbList.length - 1; i >= 0; i--) {
+    		let log = dbList[i];
+    		let display = 	`<div class= "col-md-10 col-md-offset-1">
+	    						<div class= "col-md-4"> ${log.deviceName} </div>
+	    						<div class= "col-md-2"> ${log.user} </div>
+	    						<div class= "col-md-3 ${log.inOrOut}"> ${log.inOrOut} </div>
+	    						<div class= "col-md-3"> ${log.date} 
+	    					</div>`;
+    		$("#checkoutLogs").append(display);
+    	}
+	};
+	
 	const separateDeviceList = function (localList) {
 		
 		for (var i = 0; i < localList.allDevices.length; i++ ) {

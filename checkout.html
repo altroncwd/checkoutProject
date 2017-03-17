@@ -19,39 +19,26 @@
 <body class="text-center">
 
 	<div>
-		<h2>QA Checkout System V3.0</h2>
+		<h2>QA Checkout System V4.0?</h2>
 	</div>
 
 	<div class="col-md-12">
-		<h3> CheckoutTypes </h3>
 		<div class="col-md-6">
-			<!-- <p>Temp Input fields, to be removed for popup</p> -->
-			<!-- <div><input id="checkout" class="deviceName" type="text" value="device name"></div>
-			<div><input id="checkout" class="userName" type="text" value="your name"></div>
-			<button id="checkout" type="button" class="btn btn-primary">Check Out</button> -->
 			<!-- Trigger/Open The Modal -->
-			<button id="checkOutModal" class="btn btn-info">Check Out</button>
+			<button id="checkOutModal" class="btn btn-info btn-lg"">Check Out</button>
 		</div>
 		<div class="col-md-6">
-			<!-- <p>Temp Input fields, to be removed for popup</p> -->
-			<!-- <div><input id="checkin" class="deviceName" type="text" value="device name"></div>
-			<div><input id="checkin" class="userName" type="text" value="your name"></div>
-			<button id="checkin" type="button" class="btn btn-primary">Check In</button> -->
-			<button id="checkInModal" type="button" class="btn btn-info"> Check In</button>
+			<button id="checkInModal" type="button" class="btn btn-info btn-lg""> Check In</button>
 			
 		</div>
 		<!-- <div class="col-md-4"> -->
-			<!-- <p>COMING SOON</p> -->
-			<!-- <div><input id=""type="text" value="checked out device"></div> -->
-			<!-- <div><input id=""type="text" value="your name"></div> -->
-			<!-- <div><input id=""type="text" value="swapped device"></div> -->
 			<!-- <button id="swapdevices" type="button" class="btn btn-primary">Swap Devices</button> -->
 		<!-- </div> -->
 	</div>
 	
 	<div id = "deviceStatus" class= "col-md-10 col-md-offset-1">
-	<h3> Devices Status </h3>
-	<hr>
+		<h3> Devices Status </h3>
+		<hr>
 		<div class= "col-md-10 col-md-offset-1">
 			<div class="col-md-3"><h4> DeviceName </h4> </div>
 			<div class="col-md-3"><h4> Device Model  </h4> </div>
@@ -66,8 +53,8 @@
 	<h3> Checked Out Devices </h3>
 	<hr>
 		<div class= "col-md-10 col-md-offset-1">
-			<div class= "col-md-3"> <h4>DeviceName</h4>  </div>
-			<div class= "col-md-3"> <h4>User</h4> </div>
+			<div class= "col-md-4"> <h4>DeviceName</h4>  </div>
+			<div class= "col-md-2"> <h4>User</h4> </div>
 			<div class= "col-md-3"> <h4>Checkin Status</h4> </div>
 			<div class= "col-md-3"> <h4>Time</h4> </div>
 		</div>
@@ -76,7 +63,7 @@
 
 
 	<div class="footer navbar-fixed-bottom">
-
+		<hr class="bottomLine">
 		<!-- The CHECKOUT Modal -->
 		<div class="modal1">
 		  <!-- Modal content -->
@@ -84,14 +71,15 @@
 		    <span class="close">&times;</span>
 		    <h3>CHECK OUT</h3>
 		    <input type="text" value="Name">
-		    <p>List of devices availible for check out</p>
+		    <h4> List of devices availible for check out</h4>
 		    <div class="devicesAvailible">
 
 		    </div>
-		    <button class="btn btn-primary submit">SUBMIT</button>
+		    <br>
+		    <button class="btn btn-primary submit btn-lg"">SUBMIT</button>
 		    <div class="checkoutList">
-		    	<p>List of devices being checked out</p>
-
+		    	<h4> List of devices being checked out</h4>
+		    	<hr>
 		    </div>
 		  </div>
 		</div>
@@ -103,14 +91,15 @@
 		    <span class="close">&times;</span>
 		    <h3>CHECK IN</h3>
 		    <input type="text" value="Name">
-		    <p>List of devices availible for check in</p>
+		    <h4> List of devices availible for check in</h4>
 		    <div class="devicesOut">
 		    	
 		    </div>
-		    <button class="btn btn-primary submit">SUBMIT</button>
+		    <br>
+		    <button class="btn btn-primary submit btn-lg"">SUBMIT</button>
 		    <div class="checkoutList">
-		    	<p>List of devices being checked in</p>
-		    	
+		    	<h4> List of devices being checked in</h4>
+		    	<hr>
 		    </div>
 		  </div>
 		</div>
@@ -121,21 +110,21 @@
 		  <div class="modal-content">
 		    <span class="close">&times;</span>
 		    <h3>DEVICE IN</h3>
-		    <input type="text" value="Name">
-		    <input type="text" value="Model">
-		    <input type="text" value="OS Version">
-		    <button class="btn btn-primary">SUBMIT</button>
+		    <div><input id="newDevice" class="deviceName" type="text" value="Device Name"></div>
+			<div><input id="newDevice" class="deviceModel" type="text" value="Device Model"></div>
+			<div><input id="newDevice" class="deviceOS" type="text" value="Device OS"></div>
+		    <button id="addRemove" type="button" class="btn btn-warning btn-lg""> Submit </button>
 		  </div>
 		</div>
 
 
 
-		<h4> Update Device List</h4>
-		<button id="addRemove" type="button" class="btn btn-warning"> Add/Remove</button>
-		<button id ="newDeviceModal" class="btn btn-info">Test Modal</button>
-		<div><input id="newDevice" class="deviceName" type="text" value="Device Name"></div>
-		<div><input id="newDevice" class="deviceModel" type="text" value="Device Model"></div>
-		<div><input id="newDevice" class="deviceOS" type="text" value="Device OS"></div>
+		<!-- <h4> Update Device List</h4> -->
+		<!-- <button id="addRemove" type="button" class="btn btn-warning"> Add/Remove</button> -->
+		<button id ="newDeviceModal" class="btn btn-info btn-lg"">Add New Device</button>
+		<!-- <div><input id="newDevice" class="deviceName" type="text" value="Device Name"></div> -->
+		<!-- <div><input id="newDevice" class="deviceModel" type="text" value="Device Model"></div> -->
+		<!-- <div><input id="newDevice" class="deviceOS" type="text" value="Device OS"></div> -->
 	</div>
 
 </body>

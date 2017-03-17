@@ -4,7 +4,6 @@ $(document).ready(function(){
 
     let controllMethods = Controller();
 
-
     //------------------------ Info Storage/Methods section ------------------
     let deviceStorageAccess = {
         allDevices : [],
@@ -30,75 +29,9 @@ $(document).ready(function(){
     };
 
 
-    // deviceStorageAccess.retreiveAllDeviceInfo = function (){
-    //     return this.allDevices;
-    // };
 
-    // deviceStorageAccess.retreiveAllDeviceLogs = function (){
-    //     return this.allCheckoutLogs;
-    // };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // $("#checkout.btn").click(function(){
-    //     if( $("#checkout.deviceName").val() == "" ||
-    //         $("#checkout.userName").val() == ""){
-    //         alert("Please fill out all the required fields");
-    //     } else {
-    //         controllMethods.checkOutDevice( $("#checkout.deviceName").val(),
-    //                                         $("#checkout.userName").val()   )
-    //             .done(function(returnValue){
-    //                 if(returnValue.indexOf("Invalid update query :") > -1 ){
-    //                     // replace with error popup?
-    //                     alert("Something wen't wrong, check your device name");
-    //                 } else {
-    //                     // call a toaster?
-    //                     // $("#checkout.deviceName").val("");
-    //                     // $("#checkout.userName").val("");
-    //                     window.location.reload()
-    //                 }
-    //             });
-
-    //         // $.Get/post requests run acyn, meaning the parent function will finish before the request.  Will need to create a way to clear input fileds on succesfull resuets
-    //     }
-    // });
-
-    // $("#checkin.btn").click(function(){
-    //     if( $("#checkin.deviceName").val() == "" ||
-    //         $("#checkin.userName").val() == "" ){
-    //         alert("Please fill out all the required fields");
-    //     } else {
-    //         controllMethods.checkInDevice(  $("#checkin.deviceName").val(),
-    //                                         $("#checkin.userName").val()    )
-    //         .done(function(returnValue){
-    //             console.log(returnValue.indexOf("invalid insert query"));
-    //             if (returnValue.indexOf("invalid insert query") > -1 ){
-    //                 // replace with error popup?
-    //                 alert("Unable to check in device, check device name");
-    //             } else {
-    //                 // call a toaster?
-    //                 // $("#checkin.deviceName").val("");
-    //                 // $("#checkin.userName").val("");
-    //                 window.location.reload()
-    //             }
-    //         })
-    //     }
-
-    // });
-
-    $("#swapdevices").click(function(){
-
+    $("input").click(function(){
+        $("input").val("");
     });
 
     $("#addRemove").click(function(){
@@ -116,10 +49,6 @@ $(document).ready(function(){
                     if( returnValue.indexOf("Invalid query") > -1){
                         alert("Device failed to add, device name might already exist. Please check device names");
                     } else {
-                        // alert("Device Succesfully added");
-                        // $("#newDevice.deviceName").val("");
-                        // $("#newDevice.deviceModel").val("");
-                        // $("#newDevice.deviceOS").val("");
                         window.location.reload();
                     }
                 });
@@ -138,11 +67,13 @@ $(document).ready(function(){
         if (event.target == this){
             $(".modal1").css("display", "none");
             controllMethods.renderAvailibleDevices(deviceStorageAccess);
+            $("input").val("Name");
         }
     });
     $(".modal1 .close").click(function(){
         $(".modal1").css("display", "none");
         controllMethods.renderAvailibleDevices(deviceStorageAccess);
+        $("input").val("Name");
     });
     $(".modal1 .submit").click(function(){
         let userName = $(".modal1 input").val();
@@ -156,8 +87,7 @@ $(document).ready(function(){
                         // replace with error popup?
                         alert("Something wen't wrong, check your device name");
                     } else {
-                        // call a toaster?
-                        
+                        // call a toaster? 
                         window.location.reload()
                     }
                 });
@@ -174,11 +104,13 @@ $(document).ready(function(){
         if (event.target == this){
             $(".modal2").css("display", "none");
             controllMethods.renderAvailibleDevices(deviceStorageAccess);
+            $("input").val("Name");
         }
     });
     $(".modal2 .close").click(function(){
         $(".modal2").css("display", "none");
         controllMethods.renderAvailibleDevices(deviceStorageAccess);
+        $("input").val("Name");
     });
     $(".modal2 .submit").click(function() {
         let userName = $(".modal2 input").val();
@@ -187,9 +119,6 @@ $(document).ready(function(){
             controllMethods.checkInDevice(  userName,
                                             deviceStorageAccess.selectedList)
             .done(function(returnValue){
-                console.log(returnValue);
-                // console.log(returnValue.indexOf("invalid insert query"));
-                // console.log((returnValue.indexOf() > -1));
                 if (returnValue.indexOf("invalid insert query") > -1 ){
                     // replace with error popup?
                     alert("Unable to check in device, check device name");
@@ -243,10 +172,8 @@ $(document).ready(function(){
             controllMethods.renderDeviceList(deviceStorageAccess.allDevices);
             // separate deices into two lists
             controllMethods.separateDeviceList( deviceStorageAccess);
-
             controllMethods.renderAvailibleDevices(deviceStorageAccess);
-            // controllMethods.renderAvailibleDevices(deviceStorageAccess.checkedOutDevices);
-            // controllMethods.renderAvailibleDevices(deviceStorageAccess.allDevices);
+
         });
 
 

@@ -1,3 +1,7 @@
+body {
+    font-family:  ;
+}
+
 div.Out {
 	background-color: #ffe6e6;
 }
@@ -5,7 +9,7 @@ div.In {
 	background-color: #e6ffe6;
 }
 div.available {
-	background-color: #e6ffe6
+	background-color: #e6ffe6;
 }
 .modal1 {
     display: none; /* Hidden by default */
@@ -69,4 +73,19 @@ div.available {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+#checkoutLogs {
+    margin-bottom: 70px;
+}
+
+.footer {
+    background-color: white;
+    padding-bottom: 10px;
+}
+
+.bottomLine {
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 10px;
 }
