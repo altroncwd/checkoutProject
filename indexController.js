@@ -7,23 +7,27 @@ const Controller = function () {
 
 	const checkOutDevice = function (deviceName, userName){
 		//for checking out a device
+
 		let checkoutData = {
 			action : "checkOut",
-			deviceName : deviceName,
-			userName : userName
+			deviceName : "'" + deviceName.join("', '") + "'",
+			userName : userName,
+			originList : deviceName.join(', '),
 		};
-		
+
 		return $.post("server.php", checkoutData);
 
 	};
 
-	const checkInDevice = function (deviceName, userName){
+	const checkInDevice = function (userName, deviceName){
+
 		let checkoutData = {
 			action : "checkIn",
-			deviceName : deviceName,
+			deviceName : deviceName.join("', '"),
 			userName : userName,
+			originList : deviceName.join(', '),
 		};
-
+		console.log(checkoutData);
 		return $.post("server.php", checkoutData);
 	};
 
@@ -59,17 +63,34 @@ const Controller = function () {
 		}
 	};
 
-	const renderAvailibleDevices = function (list){
-		let deviceList = list;
-		for (var i = 0; i < deviceList.length; i++){
-			let display = `<button class="btn btn-success"> &times; ${deviceList[i].deviceName} </button>`;
-			if (deviceList[i].status == "Checked Out"){
-				// add to checkIn list
-				$(".deviceCheckList").append(display);
-			} else if (deviceList[i].status == "available"){
-				// add to checkOut list
-				$(".devicesAvailible").append(display);
+	const separateDeviceList = function (localList) {
+		
+		for (var i = 0; i < localList.allDevices.length; i++ ) {
+			if ( localList.allDevices[i].status === "available") {
+				localList.checkedInDevices.push( localList.allDevices[i]);
+			} else if (localList.allDevices[i].status === "Checked Out") {
+				localList.checkedOutDevices.push( localList.allDevices[i]);
 			}
+		}		
+		
+	};
+
+	const renderAvailibleDevices = function (list){
+
+		// clear any existing lists
+		$(".deviceButtons").remove();
+		// we also clear out the checklist to make sure its in a set state
+		list.selectedList = [];
+
+		let devicesIn = list.checkedInDevices;
+		let devicesOut = list.checkedOutDevices;
+
+		for (var i = 0; i < devicesIn.length; i++ ) {
+			$(".devicesAvailible").append( `<button class="btn btn-success deviceButtons" checkList="${devicesIn[i].deviceName}" > &times; ${devicesIn[i].deviceName} </button>`);
+		}
+
+		for (var j = 0; j < devicesOut.length; j++) {
+			$(".devicesOut").append(`<button class="btn btn-success deviceButtons" checkList="${devicesOut[j].deviceName}" > &times; ${devicesOut[j].deviceName} </button>`);
 		}
 	};
 
@@ -100,5 +121,6 @@ const Controller = function () {
 		updateDeviceInformation	: updateDeviceInformation,
 		renderDeviceList 	: 	renderDeviceList,
 		renderAvailibleDevices : renderAvailibleDevices,
+		separateDeviceList : separateDeviceList,
 	};
 };

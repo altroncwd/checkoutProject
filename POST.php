@@ -6,13 +6,16 @@
 		if($_REQUEST["action"] == "checkOut"){
 
 			$changeStatusQuery  = " UPDATE `deviceList` SET `status`= 'Checked Out' ";
-			$changeStatusQuery .= " WHERE `deviceName` =  '" . $_REQUEST['deviceName'] . "'";
+			$changeStatusQuery .= " WHERE `deviceName` IN (" . $_REQUEST['deviceName'] . ")";
 			$changeStatusQuery .= " AND `status` = 'available' ";
+
+			echo "OHHH GOD";
+			echo $_REQUEST['deviceName'];
 
 			$results = mysqli_query($dbConnection, $changeStatusQuery);
 			
 			$deviceLogQuery  = "INSERT INTO `checkoutLog` (`deviceName`, `user`,`date`, `inOrOut`)";
-			$deviceLogQuery .= "VALUES ('" . $_REQUEST['deviceName']  . "' ,";
+			$deviceLogQuery .= "VALUES ('" . $_REQUEST['originList']  . "' ,";
 			$deviceLogQuery .= "'" . $_REQUEST['userName'] . "' ,";
 			$deviceLogQuery .= "'" . date("Y-m-d H:i:s") . "',";
 			$deviceLogQuery .= "'Out' )";
@@ -35,18 +38,19 @@
 		if($_REQUEST["action"] === 'checkIn'){
 
 			$changeStatusQuery  = " UPDATE `deviceList` SET `status`= 'available' ";
-			$changeStatusQuery .= " WHERE `deviceName` =  '" . $_REQUEST['deviceName'] . "'";
+			$changeStatusQuery .= " WHERE `deviceName` IN (" . $_REQUEST['deviceName'] . ")";
 			$changeStatusQuery .= " AND `status` = 'Checked Out' ";
 
 			$results = mysqli_query($dbConnection, $changeStatusQuery);
 			
 			$deviceLogQuery  = "INSERT INTO `checkoutLog` (`deviceName`, `user`,`date`, `inOrOut`)";
-			$deviceLogQuery .= "VALUES ('" . $_REQUEST['deviceName']  . "' ,";
+			$deviceLogQuery .= "VALUES ('" . $_REQUEST['originList']  . "' ,";
 			$deviceLogQuery .= "'" . $_REQUEST['userName'] . "' ,";
 			$deviceLogQuery .= "'" . date("Y-m-d H:i:s") . "',";
 			$deviceLogQuery .= "'In' )";
 
-			// checking fo the number of rows effected in the last query just in case values are off
+			// checking for the number of rows effected in the last query just in case values are off
+
 			if(!mysqli_affected_rows($dbConnection)){
 				die("Invalid update query :" . $changeStatusQuery);
 			} else {

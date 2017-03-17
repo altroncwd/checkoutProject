@@ -24,29 +24,29 @@
 
 	<div class="col-md-12">
 		<h3> CheckoutTypes </h3>
-		<div class="col-md-4">
+		<div class="col-md-6">
 			<!-- <p>Temp Input fields, to be removed for popup</p> -->
-			<div><input id="checkout" class="deviceName" type="text" value="device name"></div>
+			<!-- <div><input id="checkout" class="deviceName" type="text" value="device name"></div>
 			<div><input id="checkout" class="userName" type="text" value="your name"></div>
-			<button id="checkout" type="button" class="btn btn-primary">Check Out</button>
+			<button id="checkout" type="button" class="btn btn-primary">Check Out</button> -->
 			<!-- Trigger/Open The Modal -->
-			<button id="checkOutModal" class="btn btn-info">Open Modal</button>
+			<button id="checkOutModal" class="btn btn-info">Check Out</button>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-6">
 			<!-- <p>Temp Input fields, to be removed for popup</p> -->
-			<div><input id="checkin" class="deviceName" type="text" value="device name"></div>
+			<!-- <div><input id="checkin" class="deviceName" type="text" value="device name"></div>
 			<div><input id="checkin" class="userName" type="text" value="your name"></div>
-			<button id="checkin" type="button" class="btn btn-primary">Check In</button>
-			<button id="checkInModal" type="button" class="btn btn-info"> TestModal</button>
+			<button id="checkin" type="button" class="btn btn-primary">Check In</button> -->
+			<button id="checkInModal" type="button" class="btn btn-info"> Check In</button>
 			
 		</div>
-		<div class="col-md-4">
-			<p>COMING SOON</p>
+		<!-- <div class="col-md-4"> -->
+			<!-- <p>COMING SOON</p> -->
 			<!-- <div><input id=""type="text" value="checked out device"></div> -->
 			<!-- <div><input id=""type="text" value="your name"></div> -->
 			<!-- <div><input id=""type="text" value="swapped device"></div> -->
-			<button id="swapdevices" type="button" class="btn btn-primary">Swap Devices</button>
-		</div>
+			<!-- <button id="swapdevices" type="button" class="btn btn-primary">Swap Devices</button> -->
+		<!-- </div> -->
 	</div>
 	
 	<div id = "deviceStatus" class= "col-md-10 col-md-offset-1">
@@ -85,8 +85,14 @@
 		    <h3>CHECK OUT</h3>
 		    <input type="text" value="Name">
 		    <p>List of devices availible for check out</p>
-		    <div class="devicesAvailible"></div>
-		    <button class="btn btn-primary">SUBMIT</button>
+		    <div class="devicesAvailible">
+
+		    </div>
+		    <button class="btn btn-primary submit">SUBMIT</button>
+		    <div class="checkoutList">
+		    	<p>List of devices being checked out</p>
+
+		    </div>
 		  </div>
 		</div>
 
@@ -98,8 +104,14 @@
 		    <h3>CHECK IN</h3>
 		    <input type="text" value="Name">
 		    <p>List of devices availible for check in</p>
-		    <div class="deviceCheckList"></div>
-		    <button class="btn btn-primary">SUBMIT</button>
+		    <div class="devicesOut">
+		    	
+		    </div>
+		    <button class="btn btn-primary submit">SUBMIT</button>
+		    <div class="checkoutList">
+		    	<p>List of devices being checked in</p>
+		    	
+		    </div>
 		  </div>
 		</div>
 
