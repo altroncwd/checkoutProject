@@ -148,17 +148,33 @@ $(document).ready(function(){
     });
 
 
-    $( ".devicesAvailible" ).on('click', 'button', function(){
+    $(".devicesAvailible").on("click", "button", function(){
         let deviceName = $(this).attr("checkList");
         deviceStorageAccess.selectedList.push( deviceName );
         $(".checkoutList").append($(this));
 
     });
 
-    $( ".devicesOut" ).on('click', 'button', function(){
+    $(".devicesOut").on("click", "button", function(){
         let deviceName = $(this).attr("checkList");
         deviceStorageAccess.selectedList.push( deviceName );
         $(".checkoutList").append($(this));
+        console.log(deviceStorageAccess.selectedList);
+
+    });
+
+    $(".checkoutList").on("click", "button", function(){
+        let deviceName = $(this).attr("checkList");
+        // remove from list
+        let possition = deviceStorageAccess.selectedList.indexOf(deviceName);
+        deviceStorageAccess.selectedList.splice(possition, 1);
+        if ( $(this).parent().attr("inOrOut") === "In") {
+            $(".devicesOut").append($(this));
+        } else {
+            $(".devicesAvailible").append($(this));
+        }
+
+        
 
     });
 

@@ -16,21 +16,4 @@
 	
 	include "GET.php";
 
-
-	// if ( $_REQUEST['action'] == 'checkin'){
-
-	// }
-
-	// if ( $_REQUEST['action'] == 'swap'){
-
-	// }
-
-	// if ( $_REQUEST['action'] == 'remove'){
-
-	// }
-
-	// if ( $_REQUEST['action'] == 'edit'){
-
-	// }
-
  ?>
