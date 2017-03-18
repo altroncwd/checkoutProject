@@ -31,8 +31,15 @@ $(document).ready(function(){
 
 
     $("input").click(function(){
-        $("input").val("");
+        $(this).val("");
     });
+
+    const resetInputs = function () {
+        $("input").val("Name");
+        $(".deviceName").val("Device Name");
+        $(".deviceModel").val("Device Model");
+        $(".deviceOS").val("Device OS");
+    };
 
     $("#addRemove").click(function(){
         // should I move this logic to the controller?
@@ -67,13 +74,13 @@ $(document).ready(function(){
         if (event.target == this){
             $(".modal1").css("display", "none");
             controllMethods.renderAvailibleDevices(deviceStorageAccess);
-            $("input").val("Name");
+            resetInputs();
         }
     });
     $(".modal1 .close").click(function(){
         $(".modal1").css("display", "none");
         controllMethods.renderAvailibleDevices(deviceStorageAccess);
-        $("input").val("Name");
+        resetInputs();
     });
     $(".modal1 .submit").click(function(){
         let userName = $(".modal1 input").val();
@@ -104,13 +111,13 @@ $(document).ready(function(){
         if (event.target == this){
             $(".modal2").css("display", "none");
             controllMethods.renderAvailibleDevices(deviceStorageAccess);
-            $("input").val("Name");
+            resetInputs();
         }
     });
     $(".modal2 .close").click(function(){
         $(".modal2").css("display", "none");
         controllMethods.renderAvailibleDevices(deviceStorageAccess);
-        $("input").val("Name");
+        resetInputs();
     });
     $(".modal2 .submit").click(function() {
         let userName = $(".modal2 input").val();
@@ -140,11 +147,12 @@ $(document).ready(function(){
     $('.modal3').click(function(event){
         if (event.target == this){
             $(".modal3").css("display", "none");
+            resetInputs();
         }
     });
     $(".modal3 .close").click(function(){
         $(".modal3").css("display", "none");
-
+        resetInputs();
     });
 
 
