@@ -39,18 +39,24 @@ $(document).ready(function(){
         $(".deviceName").val("Device Name");
         $(".deviceModel").val("Device Model");
         $(".deviceOS").val("Device OS");
+        $(".deviceType").val("iOS/Android/Kindle");
     };
 
-    $("#addRemove").click(function(){
+    $("#addDevice").click(function(){
         // should I move this logic to the controller?
         if( $("#newDevice.deviceName").val() == "" ||
             $("#newDevice.deviceModel").val() == "" ||
-            $("#newDevice.deviceOS").val() == "" ){
+            $("#newDevice.deviceOS").val() == "" ||
+            $("#newDevice.deviceType").val() == "Choose a platform" || 
+            $("newDevice.deviceName").val() == "Device Name" ||
+            $("newDevice.deviceModel").val() == "Device Model" ||
+            $("newDevice.deviceOS").val() == "Device OS" ){
             alert("Please fill out all the fields");
         } else {
             controllMethods.addNewDevice(   $("#newDevice.deviceName").val(),
                                             $("#newDevice.deviceModel").val(),
-                                            $("#newDevice.deviceOS").val()    )
+                                            $("#newDevice.deviceOS").val(),
+                                            $("#newDevice.deviceType").val()    )
                 .done(function(returnValue){
                     //promis handler
                     if( returnValue.indexOf("Invalid query") > -1){
@@ -167,8 +173,6 @@ $(document).ready(function(){
         let deviceName = $(this).attr("checkList");
         deviceStorageAccess.selectedList.push( deviceName );
         $(".checkoutList").append($(this));
-        console.log(deviceStorageAccess.selectedList);
-
     });
 
     $(".checkoutList").on("click", "button", function(){
@@ -197,7 +201,6 @@ $(document).ready(function(){
             // separate deices into two lists
             controllMethods.separateDeviceList( deviceStorageAccess);
             controllMethods.renderAvailibleDevices(deviceStorageAccess);
-
         });
 
 

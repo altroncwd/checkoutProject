@@ -4,7 +4,7 @@
 	if($_SERVER['REQUEST_METHOD'] === 'GET'){
 
 		if ($_REQUEST["logs"] == "deviceInformation"){
-			$getAllDeviceInfo = "SELECT * FROM `deviceList`";
+			$getAllDeviceInfo = "SELECT * FROM `deviceList` ORDER BY deviceName";
 
 			$results = mysqli_query($dbConnection, $getAllDeviceInfo);
 

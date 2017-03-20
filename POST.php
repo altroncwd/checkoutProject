@@ -69,10 +69,12 @@
 		if ($_REQUEST["action"] == "addDevice"){
 
 			// create query
-			$addDeviceQuery = "INSERT INTO `deviceList` (`id`, `deviceName`, `phoneModel`, `osVersion`, `status`) ";
+			$addDeviceQuery = "INSERT INTO `deviceList` (`id`, `deviceName`, `phoneModel`, `osVersion`, `status`, `deviceType`) ";
 			$addDeviceQuery.= "VALUES (NULL, '" . $_REQUEST["deviceName"]; 			
-			$addDeviceQuery.=	"', '" . $_REQUEST["deviceModel"];
-			$addDeviceQuery.=	"', '" . $_REQUEST["deviceOS"] . "', 'available')";
+			$addDeviceQuery.= "', '" . $_REQUEST["deviceModel"];
+			$addDeviceQuery.= "', '" . $_REQUEST["deviceOS"];
+			$addDeviceQuery.= "', 'available' ";
+			$addDeviceQuery.= ", '" . $_REQUEST["deviceType"] . "')";
 
 			$results = mysqli_query($dbConnection, $addDeviceQuery);
 			if(!$results){

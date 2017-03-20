@@ -41,9 +41,10 @@
 		<hr>
 		<div class= "col-md-10 col-md-offset-1">
 			<div class="col-md-3"><h4> DeviceName </h4> </div>
-			<div class="col-md-3"><h4> Device Model  </h4> </div>
-			<div class="col-md-3"><h4> OS Version </h4> </div>
-			<div class="col-md-3"><h4> Device Status </h4> </div>
+			<div class="col-md-2"><h4> Device Model  </h4> </div>
+			<div class="col-md-2"><h4> Platform </h4> </div>
+			<div class="col-md-2"><h4> OS Version </h4> </div>
+			<div class="col-md-2"><h4> Device Status </h4> </div>
 		</div>
 	<!-- LIST INFO HERE -->
 	</div>
@@ -82,6 +83,15 @@
 		    <div class="checkoutList" inOrOut="Out">
 		    	
 		    </div>
+		    <br>
+		    <br>
+		    <hr>
+		    <div>
+		    	<h3> Color Key </h3>
+		    	<button class="btn btn-info">Android Devices</button>
+		    	<button class="btn btn-success">iOS Devices</button>
+		    	<button class="btn btn-warning">Kindle Devices</button>
+		    </div>
 		  </div>
 		</div>
 
@@ -103,6 +113,13 @@
 		    <div class="checkoutList" inOrOut="In">
 		    	
 		    </div>
+			<div>
+		    	<h3> Color Key </h3>
+		    	<button class="btn btn-info">Android Devices</button>
+		    	<button class="btn btn-success">iOS Devices</button>
+		    	<button class="btn btn-warning">Kindle Devices</button>
+		    </div>
+
 		  </div>
 		</div>
 
@@ -115,18 +132,18 @@
 		    <div><input id="newDevice" class="deviceName" type="text" value="Device Name"></div>
 			<div><input id="newDevice" class="deviceModel" type="text" value="Device Model"></div>
 			<div><input id="newDevice" class="deviceOS" type="text" value="Device OS"></div>
-		    <button id="addRemove" type="button" class="btn btn-warning btn-lg""> Submit </button>
+			<div><select id="newDevice" class="deviceType" type="text">
+				<option> Choose a platform </option>
+				<option value="iOS"> iOS</option>
+				<option value="Android"> Android</option>
+				<option value="Kindle"> Kindle</option>
+			</select></div>
+		    <button id="addDevice" type="button" class="btn btn-warning btn-lg""> Submit </button>
 		  </div>
 		</div>
 
-
-
-		<!-- <h4> Update Device List</h4> -->
-		<!-- <button id="addRemove" type="button" class="btn btn-warning"> Add/Remove</button> -->
 		<button id ="newDeviceModal" class="btn btn-info btn-lg"">Add New Device</button>
-		<!-- <div><input id="newDevice" class="deviceName" type="text" value="Device Name"></div> -->
-		<!-- <div><input id="newDevice" class="deviceModel" type="text" value="Device Model"></div> -->
-		<!-- <div><input id="newDevice" class="deviceOS" type="text" value="Device OS"></div> -->
+
 	</div>
 
 </body>

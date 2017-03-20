@@ -41,9 +41,10 @@ const Controller = function () {
 			let device = deviceList[i];
 			let display = 	`<div class= "col-md-10 col-md-offset-1">
 								<div class="col-md-3"> ${device.deviceName} </div>
-								<div class="col-md-3"> ${device.phoneModel} </div>
-								<div class="col-md-3"> ${device.osVersion} </div>
-								<div class="col-md-3 ${device.status}"> ${device.status} 
+								<div class="col-md-2"> ${device.phoneModel} </div>
+								<div class="col-md-2"> ${device.deviceType} </div>
+								<div class="col-md-2"> ${device.osVersion} </div>
+								<div class="col-md-2 ${device.status}"> ${device.status} 
 							</div>`;
 			$("#deviceStatus").append(display);
 		}
@@ -86,23 +87,36 @@ const Controller = function () {
 
 		let devicesIn = list.checkedInDevices;
 		let devicesOut = list.checkedOutDevices;
+		let first = `<button class="btn `;
+		let third = ` deviceButtons" checkList="`;
+		let fifth = `" > &times;`;
+		let seventh = `</button>`;
+
+		let type = {
+			Kindle : `btn-warning`,
+			Android : `btn-success`,
+			iOS : `btn-info`
+		};
 
 		for (var i = 0; i < devicesIn.length; i++ ) {
-			$(".devicesAvailible").append( `<button class="btn btn-success deviceButtons" checkList="${devicesIn[i].deviceName}" > &times; ${devicesIn[i].deviceName} </button>`);
+			// check for iOS/Android/Kindle 
+			$(".devicesAvailible").append( first + type[devicesIn[i].deviceType] + third + devicesIn[i].deviceName + fifth + devicesIn[i].deviceName + seventh);
 		}
 
 		for (var j = 0; j < devicesOut.length; j++) {
-			$(".devicesOut").append(`<button class="btn btn-success deviceButtons" checkList="${devicesOut[j].deviceName}" > &times; ${devicesOut[j].deviceName} </button>`);
+			// check for iOS/Android/Kindle 
+			$(".devicesOut").append( first + type[devicesOut[j].deviceType] + third + devicesOut[j].deviceName + fifth + devicesOut[j].deviceName + seventh );
 		}
 	};
 
-	const addNewDevice = function (deviceName, deviceModel, deviceOS){
+	const addNewDevice = function (deviceName, deviceModel, deviceOS, deviceType){
 		//for adding new devices to the device list
 		let data = {
             action : "addDevice",
         	deviceName : deviceName,
         	deviceModel : deviceModel,
-            deviceOS : deviceOS
+            deviceOS : deviceOS,
+            deviceType : deviceType
         };
         			
         return $.post("server.php", data);
