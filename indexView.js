@@ -201,6 +201,7 @@ $(document).ready(function(){
             // separate deices into two lists
             controllMethods.separateDeviceList( deviceStorageAccess);
             controllMethods.renderAvailibleDevices(deviceStorageAccess);
+            console.log(deviceStorageAccess);
         });
 
 

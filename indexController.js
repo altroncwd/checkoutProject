@@ -89,23 +89,23 @@ const Controller = function () {
 		let devicesOut = list.checkedOutDevices;
 		let first = `<button class="btn `;
 		let third = ` deviceButtons" checkList="`;
-		let fifth = `" > &times;`;
+		let fifth = `" > &times; `;
 		let seventh = `</button>`;
 
 		let type = {
 			Kindle : `btn-warning`,
-			Android : `btn-success`,
-			iOS : `btn-info`
+			Android : `btn-info`,
+			iOS : `btn-success`
 		};
 
 		for (var i = 0; i < devicesIn.length; i++ ) {
 			// check for iOS/Android/Kindle 
-			$(".devicesAvailible").append( first + type[devicesIn[i].deviceType] + third + devicesIn[i].deviceName + fifth + devicesIn[i].deviceName + seventh);
+			$(".devicesAvailible").append( first + /*type[devicesIn[i].deviceType]*/ type.iOS + third + devicesIn[i].deviceName + fifth + devicesIn[i].deviceName + seventh);
 		}
 
 		for (var j = 0; j < devicesOut.length; j++) {
 			// check for iOS/Android/Kindle 
-			$(".devicesOut").append( first + type[devicesOut[j].deviceType] + third + devicesOut[j].deviceName + fifth + devicesOut[j].deviceName + seventh );
+			$(".devicesOut").append( first + /*type[devicesOut[j].deviceType]*/ type.iOS + third + devicesOut[j].deviceName + fifth + devicesOut[j].deviceName + seventh );
 		}
 	};
 
