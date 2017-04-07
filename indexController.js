@@ -127,6 +127,16 @@ const Controller = function () {
 		// for updating device information 
 	};
 
+	const downloadLogs = function (delete) {
+		/*
+		going to add a boolian param so we can use the same funciton for downloading and downloading and deleting
+		we should make two call, one to download the actual log
+		the second to delete all db entries that are in the csv
+		this will allow us to use the same function for both a download button and delete button
+		*/
+
+
+	};
 
 	return {
 		checkOutDevice 		: 	checkOutDevice,
