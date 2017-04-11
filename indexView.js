@@ -10,7 +10,8 @@ $(document).ready(function(){
         allCheckoutLogs: [],
         checkedInDevices: [],
         checkedOutDevices: [], 
-        selectedList: []
+        selectedList: [],
+        adminFlag: 0,
     };
 
     deviceStorageAccess.updateDeviceInformation = function (){
@@ -28,6 +29,18 @@ $(document).ready(function(){
             });
     };
 
+
+    $(".hiddenAdmin").click(function(){
+        deviceStorageAccess.adminFlag ++;
+        console.log("testing", deviceStorageAccess.adminFlag);
+        if (deviceStorageAccess.adminFlag % 5 == 4) {
+            // $(".admin").css("display", "true");
+            $(".admin").toggle();
+            console.log("TEST");
+        } else {
+
+        }
+    });
 
 
     $("input").click(function(){

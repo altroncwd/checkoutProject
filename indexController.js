@@ -127,14 +127,29 @@ const Controller = function () {
 		// for updating device information 
 	};
 
-	const downloadLogs = function (delete) {
-		/*
-		going to add a boolian param so we can use the same funciton for downloading and downloading and deleting
-		we should make two call, one to download the actual log
-		the second to delete all db entries that are in the csv
-		this will allow us to use the same function for both a download button and delete button
-		*/
+	const dlLogs = function (removeLogs) {
+		
+	// 	going to add a boolian param so we can use the same funciton for downloading and downloading and deleting
+	// 	we should make two call, one to download the actual log
+	// 	the second to delete all db entries that are in the csv
+	// 	this will allow us to use the same function for both a download button and delete button
+		
+		if (removeLogs == true) {
+			let responce = confirm("This will clear out the Logs, would you like to continue");
+			if (responce !== true){
+				removeLogs = false
+			}
+		}
 
+		let data = {
+			action : "download"
+		};
+
+		return $.post("server.php", data);
+
+		if (removeLogs) {
+			// remove old logs from db
+		}
 
 	};
 
@@ -147,6 +162,7 @@ const Controller = function () {
 		updateDeviceInformation	: updateDeviceInformation,
 		renderDeviceList 	: 	renderDeviceList,
 		renderAvailibleDevices : renderAvailibleDevices,
-		separateDeviceList : separateDeviceList,
+		separateDeviceList 	: separateDeviceList,
+		dlLogs				:   dlLogs
 	};
 };

@@ -89,3 +89,6 @@ div.available {
     margin: 0px;
     margin-bottom: 10px;
 }
+.admin {
+    display: none;
+}
