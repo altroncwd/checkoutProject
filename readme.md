@@ -15,7 +15,8 @@ Goals I would like to add after I :
 - [x] Remove selected devices from the checkIn/Out list
 - [ ] Sorting lists (devices/logs)
 - [ ] Quick swap device checkout
-- [ ] Daily/weekly JSON checkout log output for more local/physical record
+- [x] Button to download checked out devices to a CSV file for excel
+- [ ] Button to clear the DB of all checkout logs (only devices that have been checked back in)
 - [ ] Device list updating via JSON files
 - [ ] Update the CSS
 - [ ] Submition request verification confirmation notice/popup
@@ -60,3 +61,12 @@ Once you have your database and tables set up you'll want to clone the repo dirr
 http://localhost/checkoutProject/checkout.html
 ```
 To view your database via the browser to update or remove information you can 
+
+### Update Notes:
+Creating CSV files using XAMPP have requried an update to permissions.  
+- Make sure to adjust XAMPP permisions settings to allow files to be read/write
+  http://stackoverflow.com/questions/9046977/xampp-permissions-on-mac-os-x
+
+- phpMyAdmin page will error out with the above settings, you'll need to change it too
+  http://stackoverflow.com/questions/30139570/phpmyadmin-xampp-wrong-permissions-on-configuration-file-should-not-be-world
+
