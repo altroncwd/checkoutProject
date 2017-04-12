@@ -48,12 +48,23 @@
 			if (!$results) {
 				die ("Failed to retrive checkout logs");
 			} else {
+				// Make sure to adjust XAMPP permisions settings to allow files to be read/write
+				// http://stackoverflow.com/questions/9046977/xampp-permissions-on-mac-os-x
+
+				// phpMyAdmin page will error out with the above settings, you'll need to change it too
+				// http://stackoverflow.com/questions/30139570/phpmyadmin-xampp-wrong-permissions-on-configuration-file-should-not-be-world
 				$fileName = date("m.d.y") . "Logs.csv";
 
+				$newLog = fopen($fileName , 'w');
+				fputcsv($newLog, Array('Devices', 'User Name', 'In / Out', 'Date', 'id'));
 				
+				foreach ($results as $key => $value) {
+					fputcsv($newLog, $value);
+				}
 
-
-				echo json_encode(getcwd());
+				fclose($newLog);
+				echo $fileName . " created";
+				// echo json_encode(getcwd());
 
 			}
 		}

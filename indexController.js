@@ -135,7 +135,7 @@ const Controller = function () {
 	// 	this will allow us to use the same function for both a download button and delete button
 
 
-		$.getJSON("server.php", {logs: "download"})
+		$.get("server.php", {logs: "download"})
 			.done(function(returnValue){
 				alert(returnValue);
 				// if (returnValue) {
