@@ -38,6 +38,26 @@
 
 		}
 
+		if ($_REQUEST["logs"] == "download"){
+			// we want to get all entries and write them to a file
+			$getCheckoutLogs = "SELECT * FROM `checkoutLog`";
+
+			$results = mysqli_query($dbConnection, $getCheckoutLogs);
+
+			// // make a file
+			if (!$results) {
+				die ("Failed to retrive checkout logs");
+			} else {
+				$fileName = date("m.d.y") . "Logs.csv";
+
+				
+
+
+				echo json_encode(getcwd());
+
+			}
+		}
+
 	}
 
 

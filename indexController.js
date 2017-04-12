@@ -133,23 +133,25 @@ const Controller = function () {
 	// 	we should make two call, one to download the actual log
 	// 	the second to delete all db entries that are in the csv
 	// 	this will allow us to use the same function for both a download button and delete button
+
+
+		$.getJSON("server.php", {logs: "download"})
+			.done(function(returnValue){
+				alert(returnValue);
+				// if (returnValue) {
+				// 	alert("logs have been downloaded", returnValue);
+				// }
+			})
+
 		
+
 		if (removeLogs == true) {
 			let responce = confirm("This will clear out the Logs, would you like to continue");
 			if (responce !== true){
-				removeLogs = false
+				// Remove DB Logs
 			}
 		}
 
-		let data = {
-			action : "download"
-		};
-
-		return $.post("server.php", data);
-
-		if (removeLogs) {
-			// remove old logs from db
-		}
 
 	};
 

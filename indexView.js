@@ -32,13 +32,8 @@ $(document).ready(function(){
 
     $(".hiddenAdmin").click(function(){
         deviceStorageAccess.adminFlag ++;
-        console.log("testing", deviceStorageAccess.adminFlag);
         if (deviceStorageAccess.adminFlag % 5 == 4) {
-            // $(".admin").css("display", "true");
             $(".admin").toggle();
-            console.log("TEST");
-        } else {
-
         }
     });
 
@@ -55,6 +50,9 @@ $(document).ready(function(){
         $(".deviceType").val("iOS/Android/Kindle");
     };
 
+
+
+    //  ----------------- "ADMIN BUTTONS" ------------------
     $("#addDevice").click(function(){
         // should I move this logic to the controller?
         if( $("#newDevice.deviceName").val() == "" ||
@@ -80,6 +78,15 @@ $(document).ready(function(){
                 });
         }
 
+    });
+
+    $("#dlLogs").click(function(){
+        console.log('test1');
+        controllMethods.dlLogs(false);
+    });
+
+    $("#cleanupDB").click(function(){
+        console.log('test2');
     });
 
     
