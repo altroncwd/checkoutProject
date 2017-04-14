@@ -6,19 +6,22 @@
 		if($_REQUEST["action"] == "checkOut"){
 
 			$changeStatusQuery  = " UPDATE `deviceList` SET `status`= 'Checked Out' ";
-			$changeStatusQuery .= " WHERE `deviceName` IN (" . $_REQUEST['deviceName'] . ")";
+			$changeStatusQuery .= " WHERE `deviceName` IN (" . $_REQUEST['deviceNames'] . ")";
 			$changeStatusQuery .= " AND `status` = 'available' ";
-
-			echo "OHHH GOD";
-			echo $_REQUEST['deviceName'];
 
 			$results = mysqli_query($dbConnection, $changeStatusQuery);
 			
-			$deviceLogQuery  = "INSERT INTO `checkoutLog` (`deviceName`, `user`,`date`, `inOrOut`)";
-			$deviceLogQuery .= "VALUES ('" . $_REQUEST['originList']  . "' ,";
-			$deviceLogQuery .= "'" . $_REQUEST['userName'] . "' ,";
-			$deviceLogQuery .= "'" . date("Y-m-d H:i:s") . "',";
-			$deviceLogQuery .= "'Out' )";
+			$deviceLogQuery  = "INSERT INTO `checkoutLog` (`deviceName`, `user`,`date`, `inOrOut`) VALUES ";
+			
+			// add multiple entries to our checkout log, 1 to 1 log entry (one device -> user)
+			foreach ($_REQUEST['arrayList'] as $key => $device) {
+				$deviceLogQuery .= "('" . $device  . "' ,";
+				$deviceLogQuery .= "'" . $_REQUEST['userName'] . "' ,";
+				$deviceLogQuery .= "'" . date("Y-m-d H:i:s") . "',";
+				$deviceLogQuery .= "'Out' ),";
+			}
+			// removing the last , from the query
+			$deviceLogQuery = rtrim($deviceLogQuery, ",");
 
 			// checking fo the number of rows effected in the last query just in case values are off
 			if(!mysqli_affected_rows($dbConnection)){
@@ -28,7 +31,7 @@
 				$insertResults = mysqli_query($dbConnection, $deviceLogQuery);
 
 				if(!$insertResults){
-					die("invalid insert query" . mysql_error()); 
+					die("invalid insert query :  ". $deviceLogQuery . mysql_error()); 
 				} else{
 					echo json_encode("Device records sent : " . $results);
 				}
@@ -38,19 +41,22 @@
 		if($_REQUEST["action"] === 'checkIn'){
 
 			$changeStatusQuery  = " UPDATE `deviceList` SET `status`= 'available' ";
-			$changeStatusQuery .= " WHERE `deviceName` IN (" . $_REQUEST['deviceName'] . ")";
+			$changeStatusQuery .= " WHERE `deviceName` IN (" . $_REQUEST['deviceNames'] . ")";
 			$changeStatusQuery .= " AND `status` = 'Checked Out' ";
 
 			$results = mysqli_query($dbConnection, $changeStatusQuery);
 			
-			$deviceLogQuery  = "INSERT INTO `checkoutLog` (`deviceName`, `user`,`date`, `inOrOut`)";
-			$deviceLogQuery .= "VALUES ('" . $_REQUEST['originList']  . "' ,";
-			$deviceLogQuery .= "'" . $_REQUEST['userName'] . "' ,";
-			$deviceLogQuery .= "'" . date("Y-m-d H:i:s") . "',";
-			$deviceLogQuery .= "'In' )";
+			$deviceLogQuery  = "INSERT INTO `checkoutLog` (`deviceName`, `user`,`date`, `inOrOut`) VALUES";
+			
+			foreach ($_REQUEST['arrayList'] as $key => $device) {
+				$deviceLogQuery .= "('" . $device  . "' ,";
+				$deviceLogQuery .= "'" . $_REQUEST['userName'] . "' ,";
+				$deviceLogQuery .= "'" . date("Y-m-d H:i:s") . "',";
+				$deviceLogQuery .= "'In' ),";
+			}
+			$deviceLogQuery = rtrim($deviceLogQuery, ",");
 
 			// checking for the number of rows effected in the last query just in case values are off
-
 			if(!mysqli_affected_rows($dbConnection)){
 				die("Invalid update query :" . $changeStatusQuery);
 			} else {

@@ -5,27 +5,28 @@ for this project we will place our requests and future filting here
 
 const Controller = function () {
 
-	const checkOutDevice = function (deviceName, userName){
+	const checkOutDevice = function (deviceNames, userName){
 		//for checking out a device
 
 		let checkoutData = {
 			action : "checkOut",
-			deviceName : "'" + deviceName.join("', '") + "'",
+			deviceNames : "'" + deviceNames.join("', '") + "'",
 			userName : userName,
-			originList : deviceName.join(', '),
+			arrayList : deviceNames,
 		};
 
 		return $.post("server.php", checkoutData);
 
 	};
 
-	const checkInDevice = function (userName, deviceName){
+	const checkInDevice = function (userName, deviceNames){
 
 		let checkoutData = {
 			action : "checkIn",
-			deviceName : "'" + deviceName.join("', '") + "'",
+			deviceNames : "'" + deviceNames.join("', '") + "'",
 			userName : userName,
-			originList : deviceName.join(', '),
+			originList : deviceNames.join(', '),
+			arrayList : deviceNames
 		};
 		console.log(checkoutData);
 		return $.post("server.php", checkoutData);

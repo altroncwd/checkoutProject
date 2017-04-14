@@ -40,7 +40,7 @@
 
 		if ($_REQUEST["logs"] == "download"){
 			// we want to get all entries and write them to a file
-			$getCheckoutLogs = "SELECT * FROM `checkoutLog`";
+			$getCheckoutLogs = "SELECT * FROM `checkoutLog` ORDER BY date DESC";
 
 			$results = mysqli_query($dbConnection, $getCheckoutLogs);
 

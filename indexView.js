@@ -116,12 +116,14 @@ $(document).ready(function(){
              controllMethods.checkOutDevice( deviceStorageAccess.selectedList,
                                              userName )
                 .done(function(returnValue){
+                    console.log("==" , returnValue);
                     if(returnValue.indexOf("Invalid update query :") > -1 ){
                         // replace with error popup?
                         alert("Something wen't wrong, check your device name");
                     } else {
                         // call a toaster? 
                         window.location.reload()
+                        // console.log('devices checked out, manually refresh to see changes, uncomment when finished with dev');
                     }
                 });
         }
@@ -152,12 +154,14 @@ $(document).ready(function(){
             controllMethods.checkInDevice(  userName,
                                             deviceStorageAccess.selectedList)
             .done(function(returnValue){
+
                 if (returnValue.indexOf("invalid insert query") > -1 ){
                     // replace with error popup?
                     alert("Unable to check in device, check device name");
                 } else {
                     // call a toaster?
                     window.location.reload()
+                    // console.log('devices checked in, manually refresh to see changes, uncomment when finished with dev');
                 }
             })
         }
