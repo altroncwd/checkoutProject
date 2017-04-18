@@ -30,7 +30,24 @@
 
 	if($_SERVER['REQUEST_METHOD'] === 'DELETE'){
 
-	// $_REQUEST['keyname']
+	// get list of all devices still checked out (DEVICE LIST)
+		//SELECT * FROM `deviceList` WHERE `status`='Checked Out'
+		$result = mysqli_query($dbConnection, "SELECT * FROM 'deviceList' WHERE 'status' = 'Checked Out' ");
+
+
+		// itterate through list and now select the last entry for each device (CHECKOUT LOGS)
+			//SELECT * FROM `checkoutLog` WHERE `deviceName`='batmans' AND `inOrOut` = 'Out' ORDER BY `id` DESC LIMIT 1
+		$lastEntryInList = Array();
+		foreach ($results as $key => $device) {
+			$lastEntryInList[] = mysqli_query($dbConnection, "SELECT * FROM 'checkoutLog' WHERE '" . $device[deviceName] . "' AND 'inOrOut' = 'Out' ORDER By 'id' DESC LIMIT 1");
+		}
+
+		// Delete all entries in CHECKOUT LOGS except for those records that match the id's
+			//SELECT * FROM `checkoutLog` WHERE `id` NOT IN ( LIST OF id's)
+		$deleteQuery = "DELETE * FROM 'checkoutLog' WHERE 'id' NOT IN ("
+		foreach ($lastEntryInList as $key => $entries) {
+			
+		}
 
 	}
 

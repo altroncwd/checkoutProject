@@ -25,7 +25,6 @@ const Controller = function () {
 			action : "checkIn",
 			deviceNames : "'" + deviceNames.join("', '") + "'",
 			userName : userName,
-			originList : deviceNames.join(', '),
 			arrayList : deviceNames
 		};
 		console.log(checkoutData);
