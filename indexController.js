@@ -137,21 +137,19 @@ const Controller = function () {
 
 		$.get("server.php", {logs: "download"})
 			.done(function(returnValue){
-				alert(returnValue);
-				// if (returnValue) {
-				// 	alert("logs have been downloaded", returnValue);
-				// }
+				alert("logs have been downloaded", returnValue);
 			})
-
-		
-
-		if (removeLogs == true) {
-			let responce = confirm("This will clear out the Logs, would you like to continue");
-			if (responce !== true){
-				// Remove DB Logs
-			}
-		}
-
+			.done(function(){
+				if (removeLogs == true) {
+					let responce = confirm("This will clear out the Logs, would you like to continue");
+					if (responce !== true){
+						$.delete("server.php", {action: "removeLogs"})
+							.done(function(returnValue) {
+								console.log(returnValue);	
+							})
+					}
+				}
+			});
 
 	};
 

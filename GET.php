@@ -21,6 +21,7 @@
 		}
 
 		if ($_REQUEST["logs"] == "checkoutLogs"){
+
 			$getCheckoutLogs = "SELECT * FROM `checkoutLog`";
 
 			$results = mysqli_query($dbConnection, $getCheckoutLogs);

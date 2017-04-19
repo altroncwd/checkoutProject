@@ -38,10 +38,6 @@ $(document).ready(function(){
     });
 
 
-    $("input").click(function(){
-        $(this).val("");
-    });
-
     const resetInputs = function () {
         $("input").val("Name");
         $(".deviceName").val("Device Name");
@@ -81,12 +77,11 @@ $(document).ready(function(){
     });
 
     $("#dlLogs").click(function(){
-        console.log('test1');
         controllMethods.dlLogs(false);
     });
 
     $("#cleanupDB").click(function(){
-        console.log('test2');
+        controllMethods.dlLogs(true);
     });
 
     
@@ -225,7 +220,7 @@ $(document).ready(function(){
             // separate deices into two lists
             controllMethods.separateDeviceList( deviceStorageAccess);
             controllMethods.renderAvailibleDevices(deviceStorageAccess);
-            console.log(deviceStorageAccess);
+            // console.log(deviceStorageAccess);
         });
 
 
