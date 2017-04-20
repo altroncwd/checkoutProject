@@ -142,11 +142,15 @@ const Controller = function () {
 			.done(function(){
 				if (removeLogs == true) {
 					let responce = confirm("This will clear out the Logs, would you like to continue");
-					if (responce !== true){
-						$.delete("server.php", {action: "removeLogs"})
+					if (responce){
+						console.log("about to make removeLogs request: ", responce);
+						$.post("server.php", {action: "removeLogs"})
 							.done(function(returnValue) {
-								console.log(returnValue);	
+								confirm("Records have now been cleared");
+                       		 	window.location.reload();
 							})
+					} else {
+						console.log("So you've changed your mind");
 					}
 				}
 			});

@@ -29,6 +29,10 @@ $(document).ready(function(){
             });
     };
 
+    // this is just clearing the input box when you click on it
+    $("input").click(function(){
+        $(this).val("");
+    });
 
     $(".hiddenAdmin").click(function(){
         deviceStorageAccess.adminFlag ++;
@@ -81,7 +85,7 @@ $(document).ready(function(){
     });
 
     $("#cleanupDB").click(function(){
-        controllMethods.dlLogs(true);
+        controllMethods.dlLogs(true)
     });
 
     
