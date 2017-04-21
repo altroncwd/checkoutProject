@@ -16,6 +16,4 @@
 	
 	include "GET.php";
 
-	include "DELETE.php";
-
  ?>

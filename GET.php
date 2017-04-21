@@ -50,7 +50,7 @@
 				die ("Failed to retrive checkout logs");
 			} else {
 				
-				$fileName = date("m.d.y") . "Logs.csv";
+				$fileName = date("m:d:y_h-i") . "_Logs.csv";
 
 				$newLog = fopen($fileName , 'w');
 				fputcsv($newLog, Array('Devices', 'User Name', 'In / Out', 'Date', 'id'));
@@ -60,7 +60,7 @@
 				}
 
 				fclose($newLog);
-				echo $fileName . " created";
+				echo $fileName;
 				// echo json_encode(getcwd());
 
 			}

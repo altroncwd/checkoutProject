@@ -137,7 +137,7 @@ const Controller = function () {
 
 		$.get("server.php", {logs: "download"})
 			.done(function(returnValue){
-				alert("logs have been downloaded", returnValue);
+				alert("logs have been downloaded: ", returnValue);
 			})
 			.done(function(){
 				if (removeLogs == true) {
