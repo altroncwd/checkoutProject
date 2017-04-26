@@ -13,10 +13,10 @@ I would love to build this application out to a larger extent but for the basic 
 
 Goals I would like to add after I :
 - [x] Remove selected devices from the checkIn/Out list
-- [ ] Sorting lists (devices/logs)
+- [x] Sorting lists (devices/logs)
 - [ ] Quick swap device checkout
 - [x] Button to download checked out devices to a CSV file for excel
-- [ ] Button to clear the DB of all checkout logs (only devices that have been checked back in)
+- [x] Button to clear the DB of all checkout logs (only devices that have been checked back in)
 - [ ] Device list updating via JSON files
 - [ ] Update the CSS
 - [ ] Submition request verification confirmation notice/popup
@@ -27,7 +27,6 @@ Goals I would like to add after II :
 - [ ] QR checkout to make checkout faster
 - [ ] QR generator for new devices/users
 - [ ] Slack integration
-- [ ] Automatic DB cleanup
 
 ### Basic Use
 In order to use this template you'll need to be running a local php server.  Currently I am using XAMPP for its easy install and use.  You will need to create a database called
