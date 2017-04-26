@@ -78,34 +78,50 @@ const Controller = function () {
 		
 	};
 
-	const renderAvailibleDevices = function (list){
+	const renderAvailibleDevices = function (list, clearListFlag){
 
-		// clear any existing lists
-		$(".deviceButtons").remove();
-		// we also clear out the checklist to make sure its in a set state
-		list.selectedList = [];
+		if(clearListFlag == undefined || clearListFlag == true) {
+			// clear any existing lists
+			$(".deviceButtons").remove();
+			// we also clear out the checklist to make sure its in a set state
+			list.selectedList = [];
+		}		
 
 		let devicesIn = list.checkedInDevices;
 		let devicesOut = list.checkedOutDevices;
-		let first = `<button class="btn `;
-		let third = ` deviceButtons" checkList="`;
+		let first = `<button class="btn btn-success deviceButtons" checkList="`;
+		let third = `" deviceType="`;
 		let fifth = `" > &times; `;
 		let seventh = `</button>`;
 
-		let type = {
-			Kindle : `btn-warning`,
-			Android : `btn-info`,
-			iOS : `btn-success`
-		};
-
 		for (var i = 0; i < devicesIn.length; i++ ) {
 			// check for iOS/Android/Kindle 
-			$(".devicesAvailible").append( first + /*type[devicesIn[i].deviceType]*/ type.iOS + third + devicesIn[i].deviceName + fifth + devicesIn[i].deviceName + seventh);
+			// debugger;
+			// $(".devicesAvailible").append( first + devicesIn[i].deviceName + fifth + devicesIn[i].deviceName + seventh);
+			if ( devicesIn[i].deviceType == "iOS"){
+				$(".iOSDevicesAvailible").append( first + devicesIn[i].deviceName + third+ devicesIn[i].deviceType + fifth + devicesIn[i].deviceName + seventh);
+			}
+			if ( devicesIn[i].deviceType == "Android"){
+				$(".androidDevicesAvailible").append( first + devicesIn[i].deviceName + third+ devicesIn[i].deviceType + fifth + devicesIn[i].deviceName + seventh);
+			}
+			if ( devicesIn[i].deviceType == "Kindle"){
+				$(".kindleDevicesAvailible").append( first + devicesIn[i].deviceName + third+ devicesIn[i].deviceType + fifth + devicesIn[i].deviceName + seventh);
+			}
 		}
 
 		for (var j = 0; j < devicesOut.length; j++) {
 			// check for iOS/Android/Kindle 
-			$(".devicesOut").append( first + /*type[devicesOut[j].deviceType]*/ type.iOS + third + devicesOut[j].deviceName + fifth + devicesOut[j].deviceName + seventh );
+			// $(".devicesOut").append( first + devicesOut[j].deviceName + fifth + devicesOut[j].deviceName + seventh );
+			if ( devicesOut[j].deviceType == "iOS"){
+				$(".iOSDevicesOut").append( first + devicesOut[j].deviceName + third+ devicesOut[j].deviceType + fifth + devicesOut[j].deviceName + seventh);
+			}
+			if ( devicesOut[j].deviceType == "Android"){
+				$(".androidDevicesOut").append( first + devicesOut[j].deviceName + third+ devicesOut[j].deviceType + fifth + devicesOut[j].deviceName + seventh);
+			}
+			if ( devicesOut[j].deviceType == "Kindle"){
+				$(".kindleDevicesOut").append( first + devicesOut[j].deviceName + third+ devicesOut[j].deviceType + fifth + devicesOut[j].deviceName + seventh);
+			}
+
 		}
 	};
 

@@ -109,7 +109,7 @@ $(document).ready(function(){
     });
     $(".modal1 .submit").click(function(){
         let userName = $(".modal1 input").val();
-
+        // debugger;
         // check for name too
         if (userName !== "Name" && userName.length > -1 && deviceStorageAccess.selectedList.length > -1) {
              controllMethods.checkOutDevice( deviceStorageAccess.selectedList,
@@ -184,7 +184,6 @@ $(document).ready(function(){
         resetInputs();
     });
 
-
     $(".devicesAvailible").on("click", "button", function(){
         let deviceName = $(this).attr("checkList");
         deviceStorageAccess.selectedList.push( deviceName );
@@ -200,16 +199,33 @@ $(document).ready(function(){
 
     $(".checkoutList").on("click", "button", function(){
         let deviceName = $(this).attr("checkList");
+
+        let returnDevice = {
+            checkedInDevices: [],
+            checkedOutDevices: []
+        };
+
         // remove from list
         let possition = deviceStorageAccess.selectedList.indexOf(deviceName);
         deviceStorageAccess.selectedList.splice(possition, 1);
+
+        // debugger;
         if ( $(this).parent().attr("inOrOut") === "In") {
-            $(".devicesOut").append($(this));
+            returnDevice.checkedOutDevices.push({
+                deviceName : $(this).attr("checkList"),
+                deviceType : $(this).attr("deviceType") });
+            controllMethods.renderAvailibleDevices( returnDevice, false);
+            // $(".devicesOut").append($(this));
         } else {
-            $(".devicesAvailible").append($(this));
+            returnDevice.checkedInDevices.push({
+                deviceName : $(this).attr("checkList"),
+                deviceType : $(this).attr("deviceType") });
+            controllMethods.renderAvailibleDevices( returnDevice, false);
+            // $(".devicesAvailible").append($(this));
         }
 
-        
+        $(this).remove();
+       
 
     });
 
