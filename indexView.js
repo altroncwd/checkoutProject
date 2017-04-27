@@ -29,6 +29,7 @@ $(document).ready(function(){
             });
     };
 
+
     // this is just clearing the input box when you click on it
     $("input").click(function(){
         $(this).val("");
@@ -166,6 +167,28 @@ $(document).ready(function(){
         }
 
     });
+    // ---------- Update Device Modal-----------
+    $("#update").click(function() {
+        $(".modal4").css("display", "block");
+    });
+
+    $('.modal4').click(function(event){
+        if (event.target == this){
+            $(".modal4").css("display", "none");
+            controllMethods.renderAvailibleDevices(deviceStorageAccess);
+            resetInputs();
+        }
+    });
+
+    $(".modal4 .close").click(function(){
+        $(".modal4").css("display", "none");
+        
+    });
+
+    $(".modal4 .submit").click(function() {
+        console.log("wtf");
+
+    });
 
 
 
@@ -229,6 +252,31 @@ $(document).ready(function(){
 
     });
 
+    $("#deviceToUpdate").change(function(){
+        if($(this).children('option:selected').index() == 0){
+            $(".deviceStatusInfo").hide();
+            $(".updateName").val("");
+            $(".updateModel").val("");
+            // $(".updatePlatform").val("");
+            $(".updateOS").val("");
+        } else {
+            let device = deviceStorageAccess.allDevices[$(this).children('option:selected').index() - 1];
+            $(".updateName").val(device.deviceName);        
+            $(".updateModel").val(device.phoneModel);
+            // $(".updatePlatform").val(device.deviceType)
+            $(".updateOS").val(device.osVersion);
+
+            $(".deviceStatusInfo").show();
+
+            $(".selectedDeviceStatus").text(device.status);
+            $("#statusFlag").prop('selectedIndex',0);
+        }
+    });
+
+    $("#statusFlag").change(function(){
+
+    });
+
 
     deviceStorageAccess.updateDeviceLogs()
         .done(function(){
@@ -240,7 +288,8 @@ $(document).ready(function(){
             // separate deices into two lists
             controllMethods.separateDeviceList( deviceStorageAccess);
             controllMethods.renderAvailibleDevices(deviceStorageAccess);
-            // console.log(deviceStorageAccess);
+            controllMethods.updateDeviceOptionsList(deviceStorageAccess.allDevices);
+            console.log(deviceStorageAccess);
         });
 
 

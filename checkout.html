@@ -155,7 +155,38 @@
 		  </div>
 		</div>
 
+		<div class="modal4">
+			<div class="modal-content">
+			<span class="close">&times;</span>	
+			<h3>Update Devices</h3>
+			<div><select id="deviceToUpdate" class="">
+					<option value="default">Select a Device</option>
+			</select></div>
+			<p>Device Name </p> <input class="updateName "type="text">
+			<p>Device Model </p> <input class="updateModel "type="text">	
+			<!-- <p>Device Platform </p> <input class="updatePlatform "type="text"> -->
+			<p>Device OS </p> <input class="updateOS "type="text">
+
+			<hr>
+			<div class="deviceStatusInfo">
+				<h3>Device Status</h3>
+				<p>Current Device Status : </p> <h4 class="selectedDeviceStatus"></h4>
+				<p>Only use this option if a device is no longer working, and needs to be set as "Dead".  Or if the name is being reused for a new device</p>
+				<select id="statusFlag">
+					<option value="Default">New Status</option>
+					<option value="Availible">Availible</option>
+					<option value="Dead">Dead</option>
+				</select>
+			</div>			
+			<br>
+			<button id="updateSubmit" type="button" class="btn btn-warning btn-lg submit">Submit Changes</button>
+
+
+			</div>
+		</div>
+
 		<button id="newDeviceModal" class="btn btn-info btn-lg admin">Add New Device</button>
+		<button id="update" class="btn btn-info btn-lg admin">Update Devices</button>
 		<button id="dlLogs" class="btn btn-info btn-lg admin">Download Logs</button>
 		<button id="cleanupDB" class="btn btn-info btn-lg admin">Clean Up Logs</button>
 

@@ -173,6 +173,20 @@ const Controller = function () {
 
 	};
 
+	const updateDeviceOptionsList = function (allDevices) {
+		for (var i = 0; i < allDevices.length; i++) {
+			$("#deviceToUpdate").append(`<option value="${allDevices[i].deviceName}" index="${i}">${allDevices[i].deviceName}</option>`);
+		}
+	};
+
+
+
+
+
+
+
+
+
 	return {
 		checkOutDevice 		: 	checkOutDevice,
 		checkInDevice 		: 	checkInDevice,
@@ -183,6 +197,7 @@ const Controller = function () {
 		renderDeviceList 	: 	renderDeviceList,
 		renderAvailibleDevices : renderAvailibleDevices,
 		separateDeviceList 	: separateDeviceList,
-		dlLogs				:   dlLogs
+		dlLogs				:   dlLogs,
+		updateDeviceOptionsList : updateDeviceOptionsList
 	};
 };
